@@ -3,7 +3,7 @@ using namespace std;
  class Matriz {
  private:
    int filas, columnas;
-   new int matriz[10][10]; //matriz fija 10x10
+   int matriz[10][10]; //matriz fija 10x10
 
  public:
 
@@ -19,4 +19,4 @@ using namespace std;
 
    void SetElemento(int f, int c, int& elem);
 
- }
+ };

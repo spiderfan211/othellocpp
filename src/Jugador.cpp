@@ -1,17 +1,6 @@
 #include<iostream>
 #include "Tablero.h"
 using namespace std;
-private:
-  int Jugador::DialogoEscoger(int n, int* p){
-    cout<<"Seleccione una de las posiciones válidas:"<<endl;
-    for(int i = 0; i < n; i++){
-      cout << "Opción "<< i << p[i] << "  " << endl;
-    };
-    int v;
-    cin >> v;
-    return v;
-  }
-public:
     Jugador(char* n){  //NOT SURE
       punt = 0;
       turno = 0;
