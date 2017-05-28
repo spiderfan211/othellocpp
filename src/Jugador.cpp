@@ -1,11 +1,11 @@
 #include<iostream>
-#include "Tablero.h"
+#include"Jugador.h"
 using namespace std;
-    Jugador(char* n){  //NOT SURE
-      punt = 0;
-      turno = 0;
+    //Jugador::Jugador(char* n){  //NOT SURE
+    //  punt = 0;
+    //  turno = 0;
     //INSERCIÓN DEL NOMBRE ¿¿??
-    }
+    //}
 
 
    int Jugador::EscogePosicion(int c, Tablero& t){
@@ -16,12 +16,12 @@ using namespace std;
          e[i] = t.GetElem(i, c);
          n++;
        }
-       if(n = 1){
-         return t.GetElem();
+       if(n == 1){
+         return e[0];
        }
        else{
          t.ImprimeTablero();
-         int v = this.DialogoEscoger(n, e);    //Entrada de vector por referencia?o parametro
+         int v = this->DialogoEscoger(n, e);    //Entrada de vector por referencia?o parametro
          return e[v];
        }
      }

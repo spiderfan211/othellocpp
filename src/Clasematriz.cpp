@@ -11,11 +11,11 @@ using namespace std;
      //matriz[fils/2+1][cols/2] = 2;
      //matriz[fils/2][cols/2+1] = 2;
    }
-   Matriz::Matriz(const Matriz &m){   //CAMBIAR CUANDO MEMORIA DINAMICA
+   Matriz::Matriz( Matriz &m){   //CAMBIAR CUANDO MEMORIA DINAMICA
      filas = m.GetFilas();
      columnas = m.GetColumnas();
-     for (int i = 0; i < fils; i++) {
-       for (int j = 0; j< cols; j++)
+     for (int i = 0; i < filas; i++) {
+       for (int j = 0; j< columnas; j++)
         matriz[i][j] = m.GetElemento(i,j);
      }
    }
@@ -59,6 +59,6 @@ using namespace std;
    };
 
 
-   void Matriz::SetElemento(int f, int c, int& elem){
+   void Matriz::SetElemento(int f, int c, int elem){
      matriz[f][c]=elem;
    };

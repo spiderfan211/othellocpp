@@ -6,8 +6,13 @@ using namespace std;
    int matriz[10][10]; //matriz fija 10x10
 
  public:
+   Matriz();
 
    Matriz(int fils, int cols);
+
+   Matriz( Matriz &m);
+
+   ~Matriz();
 
    int GetFilas ();
 
@@ -17,6 +22,6 @@ using namespace std;
    int GetElemento(int f, int c);
 
 
-   void SetElemento(int f, int c, int& elem);
+   void SetElemento(int f, int c, int elem);
 
  };

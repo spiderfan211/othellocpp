@@ -21,7 +21,7 @@ $(OBJ)/Tablero.o: $(SRC)/Tablero.cpp $(INC)/Tablero.h
 $(OBJ)/Clasematriz.o: $(SRC)/Clasematriz.cpp $(INC)/Clasematriz.h
 	$(CXX) $(CPPFLAGS) $(SRC)/Clasematriz.cpp -o $@
 
-$(OBJ)/othello.o : $(SRC)/othello.cpp $(INC)/Jugador.h $(INC)Tablero.h
+$(OBJ)/othello.o : $(SRC)/othello.cpp $(INC)/Jugador.h $(INC)/Tablero.h
 	$(CXX) $(CPPFLAGS) -o $(OBJ)/othello.o $(SRC)/othello.cpp
 
 othello: $(OBJ)/othello.o $(OBJ)/Jugador.o $(OBJ)/Clasematriz.o $(OBJ)/Tablero.o
