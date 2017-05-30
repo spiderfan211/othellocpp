@@ -9,6 +9,7 @@ private:
   //  int puntuacion;
     int turno;
     bool finalizado;
+    int puntuacion1, puntuacion2;
     int ganador;   //what
 
   public:
