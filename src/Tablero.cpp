@@ -2,35 +2,52 @@
 #include "Tablero.h"
 using namespace std;
 
-    Tablero(){    //ERROR: Expected unqualified-id before ')' token
-      puntuacion = 0;
-      turno = 0;
+
+    Tablero::Tablero(): tablero(){    //ERROR: Expected unqualified-id before ')' token
+      turno = 1;    // 1 ó 2 ó 0 ?
       finalizado = false;
       ganador = 0;
-      m();
+      tablero.SetElemento(fils/2,cols/2, 1);
+      tablero.SetElemento(fils/2+1,cols/2+1, 1);
+      tablero.SetElemento(fils/2+1,cols/2, 2);
+      tablero.SetElemento(fils/2,cols/2+1, 2);
+    }
+    Tablero::Tablero(int f, int c):tablero(f, c){
+      turno = 1;
+      finalizado = false;
+      ganador = 0;
+      tablero.SetElemento(fils/2,cols/2, 1);
+      tablero.SetElemento(fils/2+1,cols/2+1, 1);
+      tablero.SetElemento(fils/2+1,cols/2, 2);
+      tablero.SetElemento(fils/2,cols/2+1, 2);
     }
 
     void Tablero::ImprimeTablero(){
       cout<< "  a b c d e f g h "<<endl<<endl;
       cout<< " -----------------"<<endl;
       for (int i = 0; i < this->GetFils(); i++){
-        cout<< i << "|";
+        cout<< i  << "|";
         for (int j = 0; i < this->GetCols(); j++){
-          cout<< this->GetElem(i, j) << "|"<<endl;   //SUPONGO    (ASÍ NO SALEN X Y O, SINO 1  Y 2)
-        }
-        cout<<endl;
-      }
+          if(this->GetElem(i,j) == 0 )
+            cout << "| ";
+          else if (this->GetElem(i,j) == 1)
+            cout << "|x";
+          else if (this->GetElem(i,j) == 2)
+            cout << "|o";
+          };
+          cout << "|" << endl;
+      };
       cout<< " -----------------"<<endl;
     };
 
     int Tablero::GetFils(){
-      return m.GetFilas();
+      return tablero.GetFilas();
     };
     int Tablero::GetCols(){
-      return m.GetColumnas();
+      return tablero.GetColumnas();
     };
     int Tablero::GetElem(int f, int c){
-      return m.GetElemento(f,c);
+      return tablero.GetElemento(f,c);
     };
     bool Tablero::IsFinalizada(){
       return finalizado;
@@ -40,10 +57,6 @@ using namespace std;
     };
     int Tablero::GetGanador(){
       return ganador;
-    };
-
-    int Tablero::CalculaPuntuacion (){
-      return puntuacion;
     };
     bool Tablero::PosValida(int f, int c){        //MAL AÚN
       bool cosa;
@@ -66,7 +79,7 @@ using namespace std;
 
 
     bool Tablero::PuedePoner(int f, int c){
-      if (this->PosValida(f,c) && m.GetElemento(f,c) != turno){
+      if (this->PosValida(f,c) && tablero.GetElemento(f,c) != turno){
         return true;
       }
       else
@@ -75,7 +88,7 @@ using namespace std;
     };
     bool Tablero::Inserta(int f, int c, int d){
       if(this->PuedePoner(f,c)){
-        m.SetElemento(f,c, d);
+        tablero.SetElemento(f,c, d);
         return true;
       }
       else
@@ -83,9 +96,9 @@ using namespace std;
     };
 
     void Tablero::Vacia(){      //CAMBIAR A BOOLEANO
-      for( int i = 0; i < m.GetFilas(); i++){
-        for( int j = 0; j< m.GetColumnas(); j++){
-          m.SetElemento(i, j, 0);
+      for( int i = 0; i < tablero.GetFilas(); i++){
+        for( int j = 0; j< tablero.GetColumnas(); j++){
+          tablero.SetElemento(i, j, 0);
         }
       }
     };

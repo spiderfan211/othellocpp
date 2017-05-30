@@ -1,3 +1,5 @@
+#ifndef _JUGADORH_
+#define _JUGADORH_
 #include<iostream>
 #include "Tablero.h"
 using namespace std;
@@ -19,3 +21,4 @@ private:
 public:
   int EscogePosicion(int c, Tablero& t);
 };
+#endif

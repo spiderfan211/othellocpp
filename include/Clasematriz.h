@@ -1,5 +1,5 @@
-#include<fstream>
-using namespace std;
+#ifndef _MATRIZH_
+#define _MATRIZH_
  class Matriz {
  private:
    int filas, columnas;
@@ -25,3 +25,4 @@ using namespace std;
    void SetElemento(int f, int c, int elem);
 
  };
+#endif

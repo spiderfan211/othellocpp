@@ -1,9 +1,12 @@
+#ifndef _TABLEROH_
+#define _TABLEROH_
 #include "Clasematriz.h"
+#include <iostream>
 
 class Tablero{
 private:
-    Matriz m;
-    int puntuacion;
+    Matriz tablero;
+  //  int puntuacion;
     int turno;
     bool finalizado;
     int ganador;   //what
@@ -25,3 +28,4 @@ private:
     bool Inserta(int f, int c, int d);    //CAMBIAR A BOOLEANO
     void Vacia();
   };
+#endif
