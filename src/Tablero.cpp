@@ -1,9 +1,6 @@
 #include<iostream>
 #include "Tablero.h"
 using namespace std;
-  //  Tablero(int fichas, int fi, int co ){
-  //
-  //  };
 
     Tablero(){    //ERROR: Expected unqualified-id before ')' token
       puntuacion = 0;
