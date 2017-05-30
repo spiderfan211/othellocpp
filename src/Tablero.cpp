@@ -101,7 +101,7 @@ using namespace std;
     };
 
 
-    bool Tablero::PosValida(int fila, int columna)
+    bool Tablero::PosValida(int fila, int columna)  //TERMINAR
     {
       int fils;
       bool valido = false;
