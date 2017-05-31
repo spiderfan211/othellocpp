@@ -12,6 +12,7 @@ using namespace std;
       tablero.SetElemento(fils/2+1,cols/2, 2);
       tablero.SetElemento(fils/2,cols/2+1, 2);
     }
+
     Tablero::Tablero(int f, int c):tablero(f, c){
       turno = 1;
       finalizado = false;
@@ -43,23 +44,43 @@ using namespace std;
     int Tablero::GetFils(){
       return tablero.GetFilas();
     };
+
     int Tablero::GetCols(){
       return tablero.GetColumnas();
     };
+
     int Tablero::GetElem(int f, int c){
       return tablero.GetElemento(f,c);
     };
+
     bool Tablero::IsFinalizada(){
       return finalizado;
     };
+
     int Tablero::GetTurno(){
       return turno;
     };
+
+    bool Tablero::CambioTurno(){
+      if (finalizado == false){
+  			if(turno == 1)
+  				turno = 2;
+  			else
+  				turno = 1;
+      }
+      return !finalizado;
+    };
+
     int Tablero::GetGanador(){
       return ganador;
     };
-    void Tablero::Puntuacion()
-  	{
+
+    void Tablero::AcabarPartida()
+    {
+      finalizado == true;
+    };
+
+    void Tablero::Puntuacion(){
   		puntuacion1 = 0;
       puntuacion2 = 0;
 
@@ -73,7 +94,7 @@ using namespace std;
   				}
   			}
       }
-  	}
+  	};
 
     bool Tablero::Inserta(int f, int c, int d){
       if(this->PuedePoner(f,c)){
@@ -181,7 +202,7 @@ using namespace std;
       }
 
       return valido;
-    }
+    };
 
     bool Tablero::PuedePoner(int f, int c){
       if (this->PosValida(f,c) && tablero.GetElemento(f,c) != turno){
