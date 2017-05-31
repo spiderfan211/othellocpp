@@ -163,12 +163,10 @@ using namespace std;
 	{
 		bool mov_posible = false;
 
-		for(int i = 0; i < Filas() || mov_posible != true; ++i){
-			for(int j = 0; j < Columnas() || mov_posible != true; ++j){
+		for(int i = 0; i < Filas() && mov_posible != true; i++){
+			for(int j = 0; j < Columnas() && mov_posible != true; j++){
 				if(Contenido(i,j) == 0){
-					cout << "b" << endl;
 					mov_posible = PosValida(i,j);
-					cout << "c" << endl;
 				}
 			}
 		}
@@ -180,7 +178,7 @@ using namespace std;
 	{
 		if(turno == 1 && PosValida(fila, columna) && fila < Filas() && columna < Columnas()){
 			tablero.Modifica(fila, columna, turno);
-			
+
 			CambioTurno();
 		}
 		else if(turno == 2 && PosValida(fila, columna) == true && fila < Filas() && columna < Columnas()){
