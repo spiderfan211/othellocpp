@@ -25,12 +25,15 @@ int main(){
 		jugadas, ganadas_jugador1, ganadas_jugador2,
 		puntuacion_jugador1, puntuacion_jugador2;
 	bool jugar, error;
+	int v[10][10];
+	int x[10][10];
+
 
 	cout << titulo << endl;
 	cout << msg_tablero;
 	do{
 		cin >> letra >> fila >> letra >> columna >> letra;
-		error == ((fila < 4) || (fila > 10) || (columna < 4) || (columna > 10));
+		error = ((fila < 4) || (fila > 10) || (columna < 4) || (columna > 10));
 		if (error)
 			cout << msg_error;
 	}while( error );
@@ -75,6 +78,7 @@ int main(){
 	do{
 		do{
 			int c = 0;
+			int f = 0;
 			turno_actual = tablero.GetTurno();
 
 			cout << "Turno de ";
@@ -82,14 +86,18 @@ int main(){
 				jugador_1.ImprimeNombre();
 				cout << endl << msg_columna;
 				cin >> c;
-				jugador_1.EscogePosicion(c, tablero);
+				f = jugador_1.EscogePosicion(c, tablero);
+				tablero.Coloca(f,c, v); 		//???
+
 			}
 
 			else{
 				jugador_2.ImprimeNombre();
 				cout << endl << msg_columna;
 				cin >> c;
-				jugador_2.EscogePosicion(c, tablero);
+				f = jugador_2.EscogePosicion(c, tablero);
+				tablero.Coloca(f,c, v);			//???
+
 			}
 		}while(tablero.IsFinalizada() != false);
 

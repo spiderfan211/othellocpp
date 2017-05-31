@@ -27,10 +27,10 @@ private:
     void AcabarPartida();
     void PuntuacionTotal();
     int GetPuntuacion( int j );
-    bool PosValida(int f, int c);
+    bool PosValida(int f, int c, int& v);
     //ME FALTA LA IMPLEMENTACION DE LAS REGLAS DEL JUEGO EN LA POSICION VALIDA
     bool PuedePoner(int f, int c);//TAMPOCO SÉ SI FUNCIONA
-    bool Inserta(int f, int c, int d);    //CAMBIAR A BOOLEANO
+    bool Coloca(int f, int c, int& v);    //CAMBIAR A BOOLEANO
     void Vacia();
   };
 #endif

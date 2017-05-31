@@ -61,14 +61,11 @@ using namespace std;
       return turno;
     };
 
-    bool Tablero::CambioTurno(){
-      if (finalizado == false){
+    void Tablero::CambioTurno(){
   			if(turno == 1)
   				turno = 2;
   			else
   				turno = 1;
-      }
-      return !finalizado;
     };
 
     int Tablero::GetGanador(){
@@ -103,14 +100,6 @@ using namespace std;
         return puntuacion2;
     }
 
-    bool Tablero::Inserta(int f, int c, int d){ //TERMINAR
-      if(this->PuedePoner(f,c)){
-        tablero.SetElemento(f,c, d);
-        return true;
-      }
-      else
-        return false;
-    };
 
     void Tablero::Vacia(){      //CAMBIAR A BOOLEANO
       if(finalizado == true){
@@ -135,7 +124,7 @@ using namespace std;
       else
         return t = 1;
     }
-    bool Tablero::PosValida(int fila, int columna)  //TERMINAR
+    bool Tablero::PosValida(int fila, int columna, int& v)  //TERMINAR
     {
       int fils;
       bool valido = false;
@@ -156,6 +145,7 @@ using namespace std;
                       k--){
                         if(tablero.GetElemento(fils,k) == turno)
                           valido = true;
+                          v[fils][k]=turno;
                         fils--;
                   }
                 }
@@ -256,15 +246,15 @@ using namespace std;
 
 
 
-    bool Tablero::MovPosible(int& v)   //PUNTERO de punteros    inicializar todo a 0 en el puntero
-  	{
-  		bool mov_posible = false;
+    bool Tablero::MovPosible(int& v){   //PUNTERO de punteros   Pasaremos la matriz desde el main    inicializar todo a 0 en el puntero   NO MEMORIA DINAMICA (AUN)
+  		bool mov_posible;
 
-  		for(int i = 0; i < Filas() && mov_posible != true; i++){
-  			for(int j = 0; j < Columnas() && mov_posible != true; j++){
+  		for(int i = 0; i < Filas(); i++){
+  			for(int j = 0; j < Columnas(); j++){
   				if(Contenido(i,j) == 0){
   					mov_posible = PosValida(i,j);
-            //meter en v[i][j] el elemento
+            if(mov_posible)
+              v[i][j] = 0;
   				}
   			}
   		}
@@ -272,20 +262,18 @@ using namespace std;
   		return mov_posible;
   	}
 
-
-
-
-
-
-
-
-
-
-    bool Tablero::PuedePoner(int f, int c){
-      if (this->PosValida(f,c) && tablero.GetElemento(f,c) != turno){
+    bool Tablero::Coloca(int fila, int columna, int& v)
+  	{
+      if(this->MovPosible(v)){
+        tablero.SetElemento(fila, columna, turno);
+        CambioTurno();
         return true;
+
       }
-      else
+  		else {
+        this->CambioTurno();
+        if(!(this->MovPosible(v)))
+          this->AcabarPartida();      //EN EL MAIN, COMPROBAR FINALIZADO DESPUES DE ESTO
         return false;
-        //NO ESTOY SEGURO
+      }
     };

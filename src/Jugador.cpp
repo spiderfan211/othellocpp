@@ -55,7 +55,6 @@ using namespace std;
          n++;
        }
      }
-
      if(n == 1){
        return e[0];
      }
