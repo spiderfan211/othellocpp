@@ -23,7 +23,7 @@ int main(){
 
 
 
-    }while (t.IsFinalizada() == false);
+    }while ( t.IsFinalizada() == false );
     do{
       cout << seguir_jugando << endl;
       cin >> c;
