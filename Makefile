@@ -9,7 +9,7 @@ CPPFLAGS = -Wall -g -I./$(INC) -c
 
 #*******************All***************************************
 
-all: $(OBJ) $(BIN) othello
+all: $(OBJ) $(BIN) reversi
 
 #*****************Compilación de módulos**********************
 $(OBJ)/Jugador.o: $(SRC)/Jugador.cpp $(INC)/Jugador.h
@@ -21,11 +21,11 @@ $(OBJ)/Tablero.o: $(SRC)/Tablero.cpp $(INC)/Tablero.h
 $(OBJ)/Clasematriz.o: $(SRC)/Clasematriz.cpp $(INC)/Clasematriz.h
 	$(CXX) $(CPPFLAGS) $(SRC)/Clasematriz.cpp -o $@
 
-$(OBJ)/othello.o : $(SRC)/othello.cpp $(INC)/Jugador.h $(INC)/Tablero.h
-	$(CXX) $(CPPFLAGS) -o $(OBJ)/othello.o $(SRC)/othello.cpp
+$(OBJ)/reversi.o : $(SRC)/reversi.cpp $(INC)/Jugador.h $(INC)/Tablero.h
+	$(CXX) $(CPPFLAGS) -o $@ $(SRC)/reversi.cpp
 
-othello: $(OBJ)/othello.o $(OBJ)/Jugador.o $(OBJ)/Clasematriz.o $(OBJ)/Tablero.o
-	$(CXX) -g -o $(BIN)/othello $(OBJ)/othello.o $(OBJ)/Jugador.o $(OBJ)/Clasematriz.o $(OBJ)/Tablero.o
+reversi: $(OBJ)/reversi.o $(OBJ)/Jugador.o $(OBJ)/Clasematriz.o $(OBJ)/Tablero.o
+	$(CXX) -g -o $(BIN)/othello $(OBJ)/reversi.o $(OBJ)/Jugador.o $(OBJ)/Clasematriz.o $(OBJ)/Tablero.o
 
 #************Creación de directorios**************************
 

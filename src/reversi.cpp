@@ -4,7 +4,7 @@
 using namespace std;
 
 int main(){
-	string titulo = "REVERSI v1.0"
+	string titulo = "REVERSI v1.0";
 	string msg_tablero = "Introduzca el tamaño del tablero que desea de esta forma -> (fila,columna): ";
 	string msg_j1 = "Introduzca el nombre del jugador 1: ";
 	string msg_j2 = "Introduzca el nombre del jugador 2: ";
@@ -15,6 +15,7 @@ int main(){
 	string msg_jugar_nueva = "¿Desea jugar de nuevo? (s/n): ";
 	string msg_error = "Debes introducir un valor correcto";
 	string msg_resultados = "Resultados hasta el momento: ";
+	string msg_columna = "Introduzca columna";
 
 	const int MAX_NOMBRE = 50;
 	char jugador1[MAX_NOMBRE], jugador2[MAX_NOMBRE];
@@ -68,31 +69,35 @@ int main(){
 
 	do{
 		do{
+			int c = 0;
 			turno_actual = tablero.GetTurno();
 
 			cout << "Turno de ";
-			if(turno_actual == 1)
+			if(turno_actual == 1){
 				jugador_1.ImprimeNombre();
-				cout << endl;
-				jugador_1.EscogePosicion(tablero);
+				cout << endl << msg_columna;
+				cin >> c;
+				jugador_1.EscogePosicion(c, tablero);
+			}
 
-			else
+			else{
 				jugador_2.ImprimeNombre();
-				cout << endl;
-				jugador_2.EscogePosicion(tablero);
-
+				cout << endl << msg_columna;
+				cin >> c;
+				jugador_2.EscogePosicion(c, tablero);
+			}
 		}while(tablero.IsFinalizada() != false);
 
-		if(tablero.Finalizada() == true){
+		if(tablero.IsFinalizada() == true){
 				cout <<msg_sin_mov << endl;
 				cout << msg_punt << endl;
-				jugador_1.NombreJugador();
-				cout << ": " << jugador_1.PuntuacionJugador(tablero) << " puntos." << endl;
-				puntuacion_jugador1 += jugador_1.PuntuacionJugador(tablero);
+				jugador_1.ImprimeNombre();
+				cout << ": " << jugador_1.GetPuntuacion(tablero) << " puntos." << endl;
+				puntuacion_jugador1 += jugador_1.GetPuntuacion(tablero);
 
-				jugador_2.NombreJugador();
-				cout << ": " << jugador_2.PuntuacionJugador(tablero) << " puntos." << endl;
-				puntuacion_jugador2 +=jugador_2.PuntuacionJugador(tablero);
+				jugador_2.ImprimeNombre();
+				cout << ": " << jugador_2.GetPuntuacion(tablero) << " puntos." << endl;
+				puntuacion_jugador2 +=jugador_2.GetPuntuacion(tablero);
 
 				ganador = tablero.GetGanador();
 
@@ -101,34 +106,35 @@ int main(){
 
 				else if(ganador == 1){
 					cout << msg_ganador;
-					jugador_1.NombreJugador();
+					jugador_1.ImprimeNombre();
 					cout << "." << endl;
 					ganadas_jugador1++;
 				}
 
 				else{
 					cout << msg_ganador;
-					jugador_2.NombreJugador();
+					jugador_2.ImprimeNombre();
 					cout << "." << endl;
 					ganadas_jugador2++;
 				}
 
 				cout << msg_resultados << endl;
-				jugador_1.NombreJugador();
+				jugador_1.ImprimeNombre();
 				cout << ": " << ganadas_jugador1 << " ganadas de " << jugadas << " partidas jugadas con " << puntuacion_jugador1 << " puntos." << endl;
 
-				jugador_2.NombreJugador();
+				jugador_2.ImprimeNombre();
 				cout << ": " << ganadas_jugador2 << " ganadas de " << jugadas << " partidas jugadas con " << puntuacion_jugador2 << " puntos." << endl;
 
 				cout << msg_jugar_nueva;
 				cin >> respuesta;
 				do{
-					if(respuesta == 'n' || respuesta == 'N')
+					if(respuesta == 'n' || respuesta == 'N'){
 						jugar = false;
 						error = false;
+					}
 					else if (respuesta == 's' || respuesta == 'S'){
 						error = false;
-						tablero.VaciaTablero();
+						tablero.Vacia();
 						jugadas++;
 					}
 					else{

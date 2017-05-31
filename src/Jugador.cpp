@@ -14,7 +14,7 @@ using namespace std;
         }
         if(!okay)
           cout << "Error, introduzca una fila correcta: ";
-      }while( !okay || k < 0 || k > t.GetFilas() );
+      }while( !okay || k < 0 || k > t.GetFils() );
       return k;
     }
 
@@ -54,11 +54,12 @@ using namespace std;
          e[i] = i;
          n++;
        }
-       if(n == 1){
-         return e[0];
-       }
-       else{
-         return this->DialogoEscoger(n, e, t);
-       }
      }
-    };
+
+     if(n == 1){
+       return e[0];
+     }
+     else{
+       return this->DialogoEscoger(n, e, t);
+     }
+   };
