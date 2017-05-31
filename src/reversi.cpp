@@ -24,11 +24,16 @@ int main(){
 		util_jugador1, util_jugador2,
 		jugadas, ganadas_jugador1, ganadas_jugador2,
 		puntuacion_jugador1, puntuacion_jugador2;
-	bool jugar = true, error = false;
+	bool jugar, error;
 
 	cout << titulo << endl;
 	cout << msg_tablero;
-	cin >> letra >> fila >> letra >> columna >> letra;
+	do{
+		cin >> letra >> fila >> letra >> columna >> letra;
+		error == ((fila < 4) || (fila > 10) || (columna < 4) || (columna > 10));
+		if (error)
+			cout << msg_error;
+	}while( error );
 	Tablero tablero(fila, columna);
 
 	util_jugador1 = util_jugador2 = 0;
@@ -133,6 +138,7 @@ int main(){
 						error = false;
 					}
 					else if (respuesta == 's' || respuesta == 'S'){
+						jugar = true;
 						error = false;
 						tablero.Vacia();
 						jugadas++;

@@ -12,11 +12,10 @@ using namespace std;
      }
    };
    Matriz::Matriz(int fils, int cols){   //CAMBIAR CUANDO MEMORIA DINAMICA
-     filas=fils;
-     columnas=cols;
-     bool aux = (fils  * cols <=  100) && (fils*cols > 0);
-
+     bool aux = (fils  * cols <=  100) && (fils >=  4) && (cols >= 4);   //esto fallaría si esta en los casos limite
      if (aux){
+       filas=fils;
+       columnas=cols;
        for (int i = 0; i < fils; i++) {
          for (int j = 0; j< cols; j++)
           matriz[i][j]=0;
