@@ -131,71 +131,91 @@ using namespace std;
         for(int j = -1; j <= 1 || valido == false; j++){	//BUCLE INFINITO
           if(tablero.GetElemento(fila + i,columna + j) == 2){  //NO ES 2, ARREGLAR
             if(i == -1){
-                    fils = fila + i - 1;
+                fils = fila + i - 1;
 
-                    if(j == -1){
-                      for(int k = columna + j - 1; (k >= 0 && fils >= 0) || (tablero.GetElemento(fils,k) != turno || tablero.GetElemento(fils,k) != 0) || valido != true; k--){
-                        if(tablero.GetElemento(fils,k) == turno)
-                          valido = true;
-                        fils--;
-                          cout << "a" << endl;
-                      }cout << "b" << endl;
-                    }
+                if(j == -1){
+                  for(int k = columna + j - 1; (k >= 0 && fils >= 0)
+                          || (tablero.GetElemento(fils,k) != turno
+                          || tablero.GetElemento(fils,k) != 0)
+                          || valido != true; k--){
+                    if(tablero.GetElemento(fils,k) == turno)
+                      valido = true;
+                    fils--;
+                  }
+                }
 
-                    if (j == 0){
-                      for(int k = fils; k >= 0 || (tablero.GetElemento(k, columna) != turno || tablero.GetElemento(k, columna) != 0) || valido != true; k--){
-                        if(tablero.GetElemento(k,columna) == turno)
-                          valido = true;
-                          cout << "c" << endl;
-                      }cout << "d" << endl;
-                    }
-                    if (j == 1){
-                      for(int k = columna + j + 1; (k < tablero.GetColumnas() && fils >= 0) || (tablero.GetElemento(fils,k) != turno || tablero.GetElemento(fils,k) != 0) || valido != true; ++k){
-                        if(tablero.GetElemento(fils,k) == turno);
-                          valido = true;
-                        fils--;
-                          cout << "e" << endl;
-                      }cout << "f" << endl;
-                    }
+                if (j == 0){
+                  for(int k = fils; k >= 0
+                    || (tablero.GetElemento(k, columna) != turno
+                    || tablero.GetElemento(k, columna) != 0)
+                    || valido != true; k--){
+                    if(tablero.GetElemento(k,columna) == turno)
+                      valido = true;
+                  }
+                }
+                if (j == 1){
+                  for(int k = columna + j + 1; (k < tablero.GetColumnas()
+                    && fils >= 0)
+                    || (tablero.GetElemento(fils,k) != turno
+                    || tablero.GetElemento(fils,k) != 0)
+                    || valido != true; ++k){
+                    if(tablero.GetElemento(fils,k) == turno);
+                      valido = true;
+                    fils--;
+                  }
+                }
             }
             if(i == 0){
-                    if(j == -1){
-                      for(int k = columna + j - 1; k >= 0 || (tablero.GetElemento(fila,k) != turno || tablero.GetElemento(fila, k) != 0) || valido != true; --k){
-                        if(tablero.GetElemento(fila,k) == turno)
-                          valido = true;
-                        cout << "g" << endl;
-                      }cout << "h" << endl;
-                    }
-                    if(j == 1){
-                      for(int k = columna + j + 1; k < tablero.GetColumnas() || (tablero.GetElemento(fila,k) != turno || tablero.GetElemento(fila,k) != 0) || valido != true; ++k){
-                        if(tablero.GetElemento(fila,k) == 1)
-                          valido = true;
-                          cout << "i" << endl;
-                      }cout << "j" << endl;
-                    }
+                if(j == -1){
+                  for(int k = columna + j - 1; k >= 0
+                    || (tablero.GetElemento(fila,k) != turno
+                    || tablero.GetElemento(fila, k) != 0)
+                    || valido != true; --k){
+                    if(tablero.GetElemento(fila,k) == turno)
+                      valido = true;
+                  }
+                }
+                if(j == 1){
+                  for(int k = columna + j + 1; k < tablero.GetColumnas()
+                  || (tablero.GetElemento(fila,k) != turno
+                  || tablero.GetElemento(fila,k) != 0)
+                  || valido != true; ++k){
+                    if(tablero.GetElemento(fila,k) == 1)
+                      valido = true;
+                  }
+                }
             }
             if(i == 1){
-                    fils = fila + i + 1;
-                    if(j == -1){
-                      for(int k = columna + j - 1; (k >= 0 && fils < tablero.GetFilas()) || tablero.GetElemento(fils,k) != turno || tablero.GetElemento(fils,k) != 0 || valido != true; --k){
-                        if(tablero.GetElemento(fils,k) == turno)
-                          valido = true;
-                        fils++;
-                      };
-                    }
-                    if(j == 0){
-                      for(int k = fils; k < tablero.GetFilas() || (tablero.GetElemento(k,columna) != turno || tablero.GetElemento(k,columna) != 0) || valido != true; ++k){
-                        if(tablero.GetElemento(k,columna) == turno)
-                          valido = true;
-                        };
-                    }
-                    if(j == 1){
-                      for(int k = columna + j + 1; (k < tablero.GetColumnas() && fils < tablero.GetFilas()) || (tablero.GetElemento(fils,k) != turno || tablero.GetElemento(fils,k) != 0) || valido != true; ++k){
-                        if(tablero.GetElemento(fils,k) == turno)
-                          valido = true;
-                        fils++;
-                      }
-                    }
+                fils = fila + i + 1;
+                if(j == -1){
+                  for(int k = columna + j - 1; (k >= 0 && fils < tablero.GetFilas())
+                    || tablero.GetElemento(fils,k) != turno
+                    || tablero.GetElemento(fils,k) != 0
+                    || valido != true; --k){
+                    if(tablero.GetElemento(fils,k) == turno)
+                      valido = true;
+                    fils++;
+                  };
+                }
+                if(j == 0){
+                  for(int k = fils; k < tablero.GetFilas()
+                    || (tablero.GetElemento(k,columna) != turno
+                    || tablero.GetElemento(k,columna) != 0)
+                    || valido != true; ++k){
+                    if(tablero.GetElemento(k,columna) == turno)
+                      valido = true;
+                    };
+                }
+                if(j == 1){
+                  for(int k = columna + j + 1; (k < tablero.GetColumnas() && fils < tablero.GetFilas())
+                    || (tablero.GetElemento(fils,k) != turno
+                    || tablero.GetElemento(fils,k) != 0)
+                    || valido != true; ++k){
+                    if(tablero.GetElemento(fils,k) == turno)
+                      valido = true;
+                    fils++;
+                  }
+                }
             }
           }
         }
