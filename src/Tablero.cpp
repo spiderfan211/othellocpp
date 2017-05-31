@@ -3,24 +3,24 @@
 using namespace std;
 
 
-    Tablero::Tablero(): tablero(){    //ERROR: Expected unqualified-id before ')' token
+    Tablero::Tablero(): tablero(){
       turno = 1;    // 1 ó 2 ó 0 ?
       finalizado = false;
       ganador = 0;
-      tablero.SetElemento(fils/2,cols/2, 1);
-      tablero.SetElemento(fils/2+1,cols/2+1, 1);
-      tablero.SetElemento(fils/2+1,cols/2, 2);
-      tablero.SetElemento(fils/2,cols/2+1, 2);
+      tablero.SetElemento(tablero.GetFilas()/2,tablero.GetColumnas()/2, 1);
+      tablero.SetElemento(tablero.GetFilas()/2+1,tablero.GetColumnas()/2+1, 1);
+      tablero.SetElemento(tablero.GetFilas()/2+1,tablero.GetColumnas()/2, 2);
+      tablero.SetElemento(tablero.GetFilas()/2,tablero.GetColumnas()/2+1, 2);
     }
 
     Tablero::Tablero(int f, int c):tablero(f, c){
       turno = 1;
       finalizado = false;
       ganador = 0;
-      tablero.SetElemento(fils/2,cols/2, 1);
-      tablero.SetElemento(fils/2+1,cols/2+1, 1);
-      tablero.SetElemento(fils/2+1,cols/2, 2);
-      tablero.SetElemento(fils/2,cols/2+1, 2);
+      tablero.SetElemento(tablero.GetFilas()/2,tablero.GetColumnas()/2, 1);
+      tablero.SetElemento(tablero.GetFilas()/2+1,tablero.GetColumnas()/2+1, 1);
+      tablero.SetElemento(tablero.GetFilas()/2+1,tablero.GetColumnas()/2, 2);
+      tablero.SetElemento(tablero.GetFilas()/2,tablero.GetColumnas()/2+1, 2);
     }
 
     void Tablero::ImprimeTablero(){
@@ -77,7 +77,7 @@ using namespace std;
 
     void Tablero::AcabarPartida()
     {
-      finalizado == true;
+      finalizado = true;
     };
 
     void Tablero::Puntuacion(){
@@ -112,10 +112,10 @@ using namespace std;
             tablero.SetElemento(i, j, 0);
           }
         }
-        tablero.SetElemento(fils/2,cols/2, 1);
-        tablero.SetElemento(fils/2+1,cols/2+1, 1);
-        tablero.SetElemento(fils/2+1,cols/2, 2);
-        tablero.SetElemento(fils/2,cols/2+1, 2);
+        tablero.SetElemento(tablero.GetFilas()/2,tablero.GetColumnas()/2, 1);
+        tablero.SetElemento(tablero.GetFilas()/2+1,tablero.GetColumnas()/2+1, 1);
+        tablero.SetElemento(tablero.GetFilas()/2+1,tablero.GetColumnas()/2, 2);
+        tablero.SetElemento(tablero.GetFilas()/2,tablero.GetColumnas()/2+1, 2);
         finalizado = true;
         turno = 1;
       }
@@ -127,32 +127,32 @@ using namespace std;
       int fils;
       bool valido = false;
 
-      for(int i = -1; i <= 1 || valido == false; ++i){
-        for(int j = -1; j <= 1 || valido == false ++j){	//BUCLE INFINITO
-          if(Contenido(fila + i,columna + j) == 2){  //NO ES 2, ARREGLAR
+      for(int i = -1; i <= 1 || valido == false; i++){
+        for(int j = -1; j <= 1 || valido == false; j++){	//BUCLE INFINITO
+          if(tablero.GetElemento(fila + i,columna + j) == 2){  //NO ES 2, ARREGLAR
             if(i == -1){
                     fils = fila + i - 1;
 
                     if(j == -1){
-                      for(int k = columna + j - 1; (k >= 0 && fils >= 0) || (Contenido(fils,k) != turno || Contenido(fils,k) != 0) || valido != true; --k){
-                        if(Contenido(fils,k) == turno)
-                          valido == true;
+                      for(int k = columna + j - 1; (k >= 0 && fils >= 0) || (tablero.GetElemento(fils,k) != turno || tablero.GetElemento(fils,k) != 0) || valido != true; k--){
+                        if(tablero.GetElemento(fils,k) == turno)
+                          valido = true;
                         fils--;
                           cout << "a" << endl;
                       }cout << "b" << endl;
                     }
 
                     if (j == 0){
-                      for(int k = fils; k >= 0 || (Contenido(k, columna) != turno || Contenido(k, columna) != 0) || valido != true; --k){
-                        if(Contenido(k,columna) == turno)
-                          valido == true;
+                      for(int k = fils; k >= 0 || (tablero.GetElemento(k, columna) != turno || tablero.GetElemento(k, columna) != 0) || valido != true; k--){
+                        if(tablero.GetElemento(k,columna) == turno)
+                          valido = true;
                           cout << "c" << endl;
                       }cout << "d" << endl;
                     }
                     if (j == 1){
-                      for(int k = columna + j + 1; (k < Columnas() && fils >= 0) || (Contenido(fils,k) != turno || Contenido(fils,k) != 0) || valido != true; ++k){
-                        if(Contenido(fils,k) == turno);
-                          valido == true;
+                      for(int k = columna + j + 1; (k < tablero.GetColumnas() && fils >= 0) || (tablero.GetElemento(fils,k) != turno || tablero.GetElemento(fils,k) != 0) || valido != true; ++k){
+                        if(tablero.GetElemento(fils,k) == turno);
+                          valido = true;
                         fils--;
                           cout << "e" << endl;
                       }cout << "f" << endl;
@@ -160,16 +160,16 @@ using namespace std;
             }
             if(i == 0){
                     if(j == -1){
-                      for(int k = columna + j - 1; k >= 0 || (Contenido(fila,k) != turno || Contenido(fila, k) != 0) || valido != true; --k){
-                        if(Contenido(fila,k) == turno)
-                          valido == true;
+                      for(int k = columna + j - 1; k >= 0 || (tablero.GetElemento(fila,k) != turno || tablero.GetElemento(fila, k) != 0) || valido != true; --k){
+                        if(tablero.GetElemento(fila,k) == turno)
+                          valido = true;
                         cout << "g" << endl;
                       }cout << "h" << endl;
                     }
                     if(j == 1){
-                      for(int k = columna + j + 1; k < Columnas() || (Contenido(fila,k) != turno || 										Contenido(fila,k) != 0) || valido != true; ++k){
-                        if(Contenido(fila,k) == 1)
-                          valido == true;
+                      for(int k = columna + j + 1; k < tablero.GetColumnas() || (tablero.GetElemento(fila,k) != turno || tablero.GetElemento(fila,k) != 0) || valido != true; ++k){
+                        if(tablero.GetElemento(fila,k) == 1)
+                          valido = true;
                           cout << "i" << endl;
                       }cout << "j" << endl;
                     }
@@ -177,22 +177,22 @@ using namespace std;
             if(i == 1){
                     fils = fila + i + 1;
                     if(j == -1){
-                      for(int k = columna + j - 1; (k >= 0 && fils < Filas()) || Contenido(fils,k) != turno || Contenido(fils,k) != 0 || valido != true; --k){
-                        if(Contenido(fils,k) == turno)
-                          valido == true;
+                      for(int k = columna + j - 1; (k >= 0 && fils < tablero.GetFilas()) || tablero.GetElemento(fils,k) != turno || tablero.GetElemento(fils,k) != 0 || valido != true; --k){
+                        if(tablero.GetElemento(fils,k) == turno)
+                          valido = true;
                         fils++;
                       };
                     }
                     if(j == 0){
-                      for(int k = fils; k < Filas() || (Contenido(k,columna) != turno || Contenido(k,columna) != 0) || valido != true; ++k){
-                        if(Contenido(k,columna) == turno)
-                          valido == true;
+                      for(int k = fils; k < tablero.GetFilas() || (tablero.GetElemento(k,columna) != turno || tablero.GetElemento(k,columna) != 0) || valido != true; ++k){
+                        if(tablero.GetElemento(k,columna) == turno)
+                          valido = true;
                         };
                     }
                     if(j == 1){
-                      for(int k = columna + j + 1; (k < Columnas() && fils < Filas()) || (Contenido(fils,k) != turno || Contenido(fils,k) != 0) || valido != true; ++k){
-                        if(Contenido(fils,k) == turno)
-                          valido == true;
+                      for(int k = columna + j + 1; (k < tablero.GetColumnas() && fils < tablero.GetFilas()) || (tablero.GetElemento(fils,k) != turno || tablero.GetElemento(fils,k) != 0) || valido != true; ++k){
+                        if(tablero.GetElemento(fils,k) == turno)
+                          valido = true;
                         fils++;
                       }
                     }

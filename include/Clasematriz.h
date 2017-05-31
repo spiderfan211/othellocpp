@@ -14,7 +14,7 @@
 
    ~Matriz();
 
-   int GetFilas ();
+   int GetFilas();
 
    int GetColumnas();
 

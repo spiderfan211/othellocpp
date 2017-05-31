@@ -14,6 +14,7 @@ private:
 
   public:
     Tablero();
+    Tablero(int f, int c);
     void ImprimeTablero();
 //    Tablero(int fichas, int fi, int co );
     int GetFils();
@@ -21,8 +22,10 @@ private:
     int GetElem(int f, int c);
     bool IsFinalizada();
     int GetTurno();
+    bool CambioTurno();
     int GetGanador();
-    int CalculaPuntuacion ();
+    void AcabarPartida();
+    void Puntuacion();
     bool PosValida(int f, int c);
     //ME FALTA LA IMPLEMENTACION DE LAS REGLAS DEL JUEGO EN LA POSICION VALIDA
     bool PuedePoner(int f, int c);//TAMPOCO SÉ SI FUNCIONA
