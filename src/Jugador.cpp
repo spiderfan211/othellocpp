@@ -7,7 +7,7 @@ using namespace std;
     //INSERCIÓN DEL NOMBRE ¿¿??
     //}
 
-
+    //HACER CONSTRUCTORES
    int Jugador::EscogePosicion(int c, Tablero& t){
      int n=0;
      int e[t.GetFils()];

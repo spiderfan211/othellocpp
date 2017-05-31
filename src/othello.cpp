@@ -30,6 +30,7 @@ int main(){
       if ( c == 's' || c == 'S' )
         seguir = true;
         error = false;
+        t.VaciaTablero();
       else if ( c == 'n' || c == 'N' )
         seguir = false;
         error = false;
