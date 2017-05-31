@@ -25,7 +25,8 @@ private:
     bool CambioTurno();
     int GetGanador();
     void AcabarPartida();
-    void Puntuacion();
+    void PuntuacionTotal();
+    int GetPuntuacion( int j );
     bool PosValida(int f, int c);
     //ME FALTA LA IMPLEMENTACION DE LAS REGLAS DEL JUEGO EN LA POSICION VALIDA
     bool PuedePoner(int f, int c);//TAMPOCO SÉ SI FUNCIONA

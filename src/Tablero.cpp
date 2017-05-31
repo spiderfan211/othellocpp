@@ -80,7 +80,7 @@ using namespace std;
       finalizado = true;
     };
 
-    void Tablero::Puntuacion(){
+    void Tablero::PuntuacionTotal(){
   		puntuacion1 = 0;
       puntuacion2 = 0;
 
@@ -96,7 +96,14 @@ using namespace std;
       }
   	};
 
-    bool Tablero::Inserta(int f, int c, int d){
+    int Tablero::GetPuntuacion( int j ){
+      if( j == 1 )
+        return puntuacion1;
+      else
+        return puntuacion2;
+    }
+
+    bool Tablero::Inserta(int f, int c, int d){ //TERMINAR
       if(this->PuedePoner(f,c)){
         tablero.SetElemento(f,c, d);
         return true;

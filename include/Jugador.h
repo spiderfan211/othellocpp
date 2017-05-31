@@ -9,16 +9,15 @@ private:
   char nombre[50];
   int turno;
   int punt;
-  int DialogoEscoger(int n, int* p){
-    cout<<"Seleccione una de las posiciones válidas:"<<endl;
-    for(int i = 0; i < n; i++){
-      cout << "Opción "<< i << p[i] << "  " << endl;
-    };
-    int v;
-    cin >> v;
-    return v;
-  }
+  int DialogoEscoger(int n, int* p, Tablero& t);
+
 public:
+  Jugador(char nom_jugador[], int num_jugador);
   int EscogePosicion(int c, Tablero& t);
+	void ImprimeNombre();
+  int GetTurno();
+  int GetPuntuacion(Tablero& tablero);
+
+
 };
 #endif

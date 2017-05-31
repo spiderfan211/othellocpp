@@ -70,10 +70,15 @@ int main(){
 		do{
 			turno_actual = tablero.GetTurno();
 
+			cout << "Turno de ";
 			if(turno_actual == 1)
+				jugador_1.ImprimeNombre();
+				cout << endl;
 				jugador_1.EscogePosicion(tablero);
 
 			else
+				jugador_2.ImprimeNombre();
+				cout << endl;
 				jugador_2.EscogePosicion(tablero);
 
 		}while(tablero.IsFinalizada() != false);
