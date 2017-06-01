@@ -24,28 +24,28 @@ void Tablero::Coloca(int f, int c)
          y = c + c_inc;        /* square           */
 
 
-        bool novalido;
+        bool salir;
          do{
-           novalido = false;
+           salir = false;
            x += f_inc;           /* Move to the      */
            y += c_inc;           /* next square      */
 
            /* If we are off the board give up */
            if(x < 0 || x >= SIZE || y < 0 || y >= SIZE)
-             novalido = true;
+             salir = true;
 
            /* If the square is blank give up */
            if(this->GetElemento(x, y) == ' ')
-             novalido = true;
+             salir = true;
 
            /* If we find the player counter, go backwards from here */
            /* changing all the opponents counters to player         */
            if(this->GetElemento(x, y) == turno){
-             while(this->GetElemento(x-=f_inc, y-=c_inc)==opponent) /* Opponent? */
+             salir = true
+             while(this->GetElemento(x-=f_inc, y-=c_inc) == this->TurnoContrario()) /* Opponent? */
                this->GetElemento(x, y) = turno;    /* Yes, change it */
-             break;                     /* We are done    */
            }
-          } while (!novalido)
+         } while (!salir)
         }
       }
      }
