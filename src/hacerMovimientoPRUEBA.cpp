@@ -5,15 +5,18 @@ void Tablero::Coloca(int f, int c)
    int x = 0;                          /* Row index for searching    */
    int y = 0;                          /* Column index for searching */
 
+
+    tablero.SetElemento(f, c, turno); //AQUÍ
+
    /* Check all the squares around this square */
    /* for the opponents counter                */
    for(f_inc = -1; f_inc <= 1; f_inc++)
      for(c_inc = -1; c_inc <= 1; c_inc++)
      {
        /* Don't check off the board, or the current square */
-       if(f + f_inc < 0 || f + f_inc >= SIZE
-         || c + c_inc < 0 || c + c_inc >= SIZE
-         || (f_inc==0 && c_inc== 0))
+       if(f + f_inc < 0 || f + f_inc >= this->GetFils()
+         || c + c_inc < 0 || c + c_inc >= this->GetCols()
+         || (f_inc ==0 && c_inc == 0))
        {
 
        /* Now check the square */
@@ -43,7 +46,7 @@ void Tablero::Coloca(int f, int c)
            if(this->GetElemento(x, y) == turno){
              salir = true
              while(this->GetElemento(x-=f_inc, y-=c_inc) == this->TurnoContrario()) /* Opponent? */
-               this->GetElemento(x, y) = turno;    /* Yes, change it */
+               tablero.SetElemento(x, y, turno);    /* Yes, change it */
            }
          } while (!salir)
         }
