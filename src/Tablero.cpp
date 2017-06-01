@@ -126,39 +126,43 @@ using namespace std;
     }
     int Tablero::PosValida(int movs[][10])  //TERMINAR
     {
-      int x, y, 
+      int x, y,
       num_movs = 0;
       bool valido;
 
-      for(int a = 0, a < this->GetFilas(); a++)
-       for(int b = 0; b < this->GetColumnas(); b++)
+
+
+      for(int a = 0, a < this->GetFils(); a++)
+       for(int b = 0; b < this->GetCols(); b++)
         movs[a][b] = 0;
-      
-      for(int i = 0; i < this->GetFilas(); i++){
-       for(int j = 0; j < this->GetColumnas(); j++){
+
+      for(int i = 0; i < this->GetFils(); i++){
+       for(int j = 0; j < this->GetCols(); j++){
         if(this->GetElemento(i,j) == ' '){
-         for(int k = -1; i + k < 0 || i + k >= this->GetFilas(); i++){
-          for(int l = -1; j + l < 0 || j + l >= this.GetColumnas() || (k == 0 && l == 0); j++){
+         for(int k = -1; i + k < 0 || i + k >= this->GetFils(); i++){
+          for(int l = -1; j + l < 0
+              || j + l >= this.GetCols()
+              || (k == 0 && l == 0); j++){
            if(this->GetElemento(i + k, j + l) == this->TurnoContrario()){
- 	    x = i + k;
-	    y = j + l;
-	    valido = true;
+ 	            x = i + k;
+	            y = j + l;
+	            valido = true;
 
-	    do{
-	     x += k;
-	     y += l;
+	            do{
+	              x += k;
+	              y += l;
 
-             if(x < 0 || x > this->GetFilas() || y < 0 || y > this->GetColumnas())
-	      valido = false;
-	     if(this->GetElemento(x,y) == ' ')
-	      valido = false;
-	     if(this->GetElemento(x,y) == turno){
-	      movs[x][y] = 1;
-              num_movs++;
-	      valido = false;
-	    }while(!valido)
-	   }
-	  }
+                if(x < 0 || x > this->GetFils() || y < 0 || y > this->GetColas())
+  	             valido = false;
+  	            if(this->GetElemento(x,y) == ' ')
+  	             valido = false;
+  	            if(this->GetElemento(x,y) == turno){
+  	             movs[x][y] = 1;
+                 num_movs++;
+  	             valido = false;
+  	            }while(!valido)
+	             }
+	        }
          }
         }
        }
