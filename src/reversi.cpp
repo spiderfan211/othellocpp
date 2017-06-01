@@ -1,21 +1,21 @@
 #include <iostream>
-#include<string>
+#include <string>
 #include "Jugador.h"
 using namespace std;
 
 int main(){
-	string titulo = "REVERSI v1.0";
-	string msg_tablero = "Introduzca el tamaño del tablero que desea de esta forma -> (fila,columna): ";
-	string msg_j1 = "Introduzca el nombre del jugador 1: ";
-	string msg_j2 = "Introduzca el nombre del jugador 2: ";
-	string msg_sin_mov = "No hay más movimientos disponibles, se acabó la partida.";
-	string msg_punt = "Puntuación final: ";
-	string msg_ganador = "El ganador es ";
-	string msg_empate = "Ha habido un empate.";
-	string msg_jugar_nueva = "¿Desea jugar de nuevo? (s/n): ";
-	string msg_error = "Debes introducir un valor correcto";
-	string msg_resultados = "Resultados hasta el momento: ";
-	string msg_columna = "Introduzca columna";
+	string titulo = "REVERSI v1.0",
+	msg_tablero = "Introduzca el tamaño del tablero que desea de esta forma -> (fila,columna): ",
+	msg_j1 = "Introduzca el nombre del jugador 1: ",
+	msg_j2 = "Introduzca el nombre del jugador 2: ",
+	msg_sin_mov = "No hay más movimientos disponibles, se acabó la partida.",
+	msg_punt = "Puntuación final: ",
+	msg_ganador = "El ganador es ",
+	msg_empate = "Ha habido un empate.",
+	msg_jugar_nueva = "¿Desea jugar de nuevo? (s/n): ",
+	msg_error = "Debes introducir un valor correcto",
+	msg_resultados = "Resultados hasta el momento: ",
+	msg_columna = "Introduzca columna";
 
 	const int MAX_NOMBRE = 50;
 	char jugador1[MAX_NOMBRE], jugador2[MAX_NOMBRE];
@@ -24,9 +24,8 @@ int main(){
 		util_jugador1, util_jugador2,
 		jugadas, ganadas_jugador1, ganadas_jugador2,
 		puntuacion_jugador1, puntuacion_jugador2;
+		mov_invalido;
 	bool jugar, error;
-	int v[10][10];
-	int x[10][10];
 
 
 	cout << titulo << endl;
@@ -38,6 +37,8 @@ int main(){
 			cout << msg_error;
 	}while( error );
 	Tablero tablero(fila, columna);
+
+	int v[tablero.GetFils()][tablero.GetCols()];
 
 	util_jugador1 = util_jugador2 = 0;
 	puntuacion_jugador1 = puntuacion_jugador2 = 0;
@@ -72,8 +73,6 @@ int main(){
 
 
 
-//
-
 
 	do{
 		do{
@@ -81,24 +80,35 @@ int main(){
 			int f = 0;
 			turno_actual = tablero.GetTurno();
 
-			cout << "Turno de ";
-			if(turno_actual == 1){
-				jugador_1.ImprimeNombre();
-				cout << endl << msg_columna;
-				cin >> c;
-				f = jugador_1.EscogePosicion(c, tablero);
-				tablero.Coloca(f,c, v); 		//???
+			if(tablero.MovPosible(v) == true){
 
+			 cout << "Turno de ";
+ 			 if(turno_actual == 1){
+				 mov_invalido = 0;
+ 				 jugador_1.ImprimeNombre();
+ 				 cout << endl << msg_columna;
+ 				 cin >> c;
+ 				 f = jugador_1.EscogePosicion(c, tablero);
+ 				 tablero.Coloca(f,c); 		//???
+ 
+ 			 }
+ 
+ 			 else{
+				 mov_invalido = 0;
+ 			 	 jugador_2.ImprimeNombre();
+ 				 cout << endl << msg_columna;
+ 				 cin >> c;
+ 				 f = jugador_2.EscogePosicion(c, tablero);
+ 				 tablero.Coloca(f,c);			//???
+ 
+			 }
 			}
 
 			else{
-				jugador_2.ImprimeNombre();
-				cout << endl << msg_columna;
-				cin >> c;
-				f = jugador_2.EscogePosicion(c, tablero);
-				tablero.Coloca(f,c, v);			//???
-
-			}
+			 mov_invalido++;
+			 if(mov_invalido = 2)
+			  tablero.AcabarPartida();
+                        }
 		}while(tablero.IsFinalizada() != false);
 
 		if(tablero.IsFinalizada() == true){
