@@ -182,10 +182,10 @@ using namespace std;
       for(int i = 0; i < this->GetFils(); i++){
        for(int j = 0; j < this->GetCols(); j++){
         if(this->GetElemento(i,j) == ' '){
-         for(int k = -1; i + k < 0 || i + k >= this->GetFils(); i++){
-          for(int l = -1; j + l < 0
-              || j + l >= this.GetCols()
-              || (k == 0 && l == 0); j++){
+         for(int k = -1; i + k >= 0 || i + k < this->GetFils(); k++){
+          for(int l = -1; j + l >= 0
+              || j + l < this.GetCols()
+              || (k != 0 && l != 0); l++){
            if(this->GetElemento(i + k, j + l) == this->TurnoContrario()){
  	            x = i + k;
 	            y = j + l;
@@ -205,8 +205,8 @@ using namespace std;
   	             valido = false;
                      }
   	            }while(!valido)
-	    }
 	   }
+	  }
          }
         }
        }
@@ -215,5 +215,5 @@ using namespace std;
     };
 
     bool Tablero::MovPosible(int movs[][10]){
-     return this->PosValida(v) >= 1;
-  	}
+     return this->PosValida(movs) >= 1;
+    }
