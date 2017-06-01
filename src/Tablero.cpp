@@ -124,51 +124,116 @@ using namespace std;
       else
         return t = 1;
     }
-    int Tablero::PosValida(int movs[][10])  //TERMINAR
+
+
+
+    void Tablero::Coloca(int f, int c)
     {
-      int x, y,
-      num_movs = 0;
-      bool valido;
+       int f_inc = 0;                   /* Row increment              */
+       int c_inc = 0;                   /* Column increment           */
+       int x = 0;                          /* Row index for searching    */
+       int y = 0;                          /* Column index for searching */
 
 
+       tablero.SetElemento(f, c, turno); //AQUÍ
 
-      for(int a = 0, a < this->GetFils(); a++)
-       for(int b = 0; b < this->GetCols(); b++)
-        movs[a][b] = 0;
+       /* Check all the squares around this square */
+       /* for the opponents counter                */
+       for(f_inc = -1; f_inc <= 1; f_inc++)
+         for(c_inc = -1; c_inc <= 1; c_inc++)
+         {
+           /* Don't check off the board, or the current square */
+           if(f + f_inc < 0 || f + f_inc >= this->GetFils()
+             || c + c_inc < 0 || c + c_inc >= this->GetCols()
+             || (f_inc ==0 && c_inc == 0))
+           {
 
-      for(int i = 0; i < this->GetFils(); i++){
-       for(int j = 0; j < this->GetCols(); j++){
-        if(this->GetElemento(i,j) == ' '){
-         for(int k = -1; i + k < 0 || i + k >= this->GetFils(); i++){
-          for(int l = -1; j + l < 0
-              || j + l >= this.GetCols()
-              || (k == 0 && l == 0); j++){
-           if(this->GetElemento(i + k, j + l) == this->TurnoContrario()){
- 	            x = i + k;
-	            y = j + l;
-	            valido = true;
+               /* Now check the square */
+               if(this->GetElemento(f + f_inc, c + c_inc) == this->TurnoContrario(){
+                 /* If we find the opponent, search in the same direction */
+                 /* for a player counter                                  */
+                 x = f + f_inc;        /* Move to opponent */
+                 y = c + c_inc;        /* square           */
 
-	            do{
-	              x += k;
-	              y += l;
 
-                if(x < 0 || x > this->GetFils() || y < 0 || y > this->GetColas())
-  	             valido = false;
-  	            if(this->GetElemento(x,y) == ' ')
-  	             valido = false;
-  	            if(this->GetElemento(x,y) == turno){
-  	             movs[x][y] = 1;
-                 num_movs++;
-  	             valido = false;
-  	            }while(!valido)
-	             }
-	        }
+                bool salir;
+                 do{
+                   salir = false;
+                   x += f_inc;           /* Move to the      */
+                   y += c_inc;           /* next square      */
+
+                   /* If we are off the board give up */
+                   if(x < 0 || x >= SIZE || y < 0 || y >= SIZE)
+                     salir = true;
+
+                   /* If the square is blank give up */
+                   if(this->GetElemento(x, y) == ' ')
+                     salir = true;
+
+                   /* If we find the player counter, go backwards from here */
+                   /* changing all the opponents counters to player         */
+                   if(this->GetElemento(x, y) == turno){
+                     salir = true
+                     while(this->GetElemento(x-=f_inc, y-=c_inc) == this->TurnoContrario()) /* Opponent? */
+                       tablero.SetElemento(x, y, turno);    /* Yes, change it */
+                   }
+                 } while (!salir)
+                }
+              }
          }
-        }
-       }
-      }
-     return num_movs;
-    };
+    }
+
+
+
+
+
+
+
+    //int Tablero::PosValida(int movs[][10])  //TERMINAR
+    //{
+    //  int x, y,
+    //  num_movs = 0;
+    //  bool valido;
+//
+//
+//
+    //  for(int a = 0, a < this->GetFils(); a++)
+    //   for(int b = 0; b < this->GetCols(); b++)
+    //    movs[a][b] = 0;
+//
+    //  for(int i = 0; i < this->GetFils(); i++){
+    //   for(int j = 0; j < this->GetCols(); j++){
+    //    if(this->GetElemento(i,j) == ' '){
+    //     for(int k = -1; i + k < 0 || i + k >= this->GetFils(); i++){
+    //      for(int l = -1; j + l < 0
+    //          || j + l >= this.GetCols()
+    //          || (k == 0 && l == 0); j++){
+    //       if(this->GetElemento(i + k, j + l) == this->TurnoContrario()){
+ 	  //          x = i + k;
+	  //          y = j + l;
+	  //          valido = true;
+//
+	  //          do{
+	  //            x += k;
+	//              y += l;
+//
+    //            if(x < 0 || x > this->GetFils() || y < 0 || y > this->GetColas())
+  	//             valido = false;
+  	//            if(this->GetElemento(x,y) == ' ')
+  	//             valido = false;
+  	//            if(this->GetElemento(x,y) == turno){
+  	//             movs[x][y] = 1;
+    //             num_movs++;
+  	//             valido = false;
+  	//            }while(!valido)
+	  //           }
+	//        }
+    //     }
+  //      }
+    //   }
+    //  }
+  //   return num_movs;
+  //  };
 
 
 
