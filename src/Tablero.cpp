@@ -188,28 +188,28 @@ using namespace std;
               k++){
           for(int l = -1; (l >= 1)
               || (j + l >= 0)
-              || (j + l < this.GetCols())
+              || (j + l < this->GetCols())
               || (k != 0 && l != 0);
               l++){
            if(this->GetElemento(i + k, j + l) == this->TurnoContrario()){
  	            x = i + k;
 	            y = j + l;
-	            valido = true;
 
 	            do{
+                salir = true;
 	              x += k;
 	              y += l;
 
-                if( (x < 0) || (x > this->GetFils()) || (y < 0) || (y > this->GetColas()))
-  	             valido = false;
+                if( (x < 0) || (x > this->GetFils()) || (y < 0) || (y > this->GetCols()))
+  	             salir = false;
   	            if(this->GetElemento(x,y) == ' ')
-  	             valido = false;
+  	             salir = false;
   	            if(this->GetElemento(x,y) == turno){
   	             movs[x][y] = 1;
-                     num_movs++;
-  	             valido = false;
-                     }
-  	            }while(!valido)
+                 num_movs++;
+  	             salir = false;
+                }
+  	            }while(!salir)
 	   }
 	  }
          }
