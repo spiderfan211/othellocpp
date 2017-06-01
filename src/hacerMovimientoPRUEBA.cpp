@@ -1,54 +1,52 @@
-void make_move(char board[][SIZE], int row, int col, char player)
+void Tablero::Coloca(int f, int c)
 {
-   int rowdelta = 0;                   /* Row increment              */
-   int coldelta = 0;                   /* Column increment           */
+   int f_inc = 0;                   /* Row increment              */
+   int c_inc = 0;                   /* Column increment           */
    int x = 0;                          /* Row index for searching    */
    int y = 0;                          /* Column index for searching */
-   char opponent = (player == 'O')? '@' : 'O';  /* Identify opponent */
-
-   board[row][col] = player;           /* Place the player counter   */
 
    /* Check all the squares around this square */
    /* for the opponents counter                */
-   for(rowdelta = -1; rowdelta <= 1; rowdelta++)
-     for(coldelta = -1; coldelta <= 1; coldelta++)
+   for(f_inc = -1; f_inc <= 1; f_inc++)
+     for(c_inc = -1; c_inc <= 1; c_inc++)
      {
        /* Don't check off the board, or the current square */
-       if(row + rowdelta < 0 || row + rowdelta >= SIZE ||
-          col + coldelta < 0 || col + coldelta >= SIZE ||
-                               (rowdelta==0 && coldelta== 0))
-         continue;
+       if(f + f_inc < 0 || f + f_inc >= SIZE
+         || c + c_inc < 0 || c + c_inc >= SIZE
+         || (f_inc==0 && c_inc== 0))
+       {
 
        /* Now check the square */
-       if(board[row + rowdelta][col + coldelta] == opponent)
-       {
+       if(this->GetElemento(f + f_inc, c + c_inc) == this->TurnoContrario(){
          /* If we find the opponent, search in the same direction */
          /* for a player counter                                  */
-         x = row + rowdelta;        /* Move to opponent */
-         y = col + coldelta;        /* square           */
+         x = f + f_inc;        /* Move to opponent */
+         y = c + c_inc;        /* square           */
 
-         for(;;)
-         {
-           x += rowdelta;           /* Move to the      */
-           y += coldelta;           /* next square      */
+
+        bool novalido;
+         do{
+           novalido = false;
+           x += f_inc;           /* Move to the      */
+           y += c_inc;           /* next square      */
 
            /* If we are off the board give up */
            if(x < 0 || x >= SIZE || y < 0 || y >= SIZE)
-             break;
+             novalido = true;
 
            /* If the square is blank give up */
-           if(board[x][y] == ' ')
-             break;
+           if(this->GetElemento(x, y) == ' ')
+             novalido = true;
 
            /* If we find the player counter, go backwards from here */
            /* changing all the opponents counters to player         */
-           if(board[x][y] == player)
-           {
-             while(board[x-=rowdelta][y-=coldelta]==opponent) /* Opponent? */
-               board[x][y] = player;    /* Yes, change it */
+           if(this->GetElemento(x, y) == turno){
+             while(this->GetElemento(x-=f_inc, y-=c_inc)==opponent) /* Opponent? */
+               this->GetElemento(x, y) = turno;    /* Yes, change it */
              break;                     /* We are done    */
            }
-         }
-       }
+          } while (!novalido)
+        }
+      }
      }
 }
