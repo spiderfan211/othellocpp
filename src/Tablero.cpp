@@ -220,5 +220,5 @@ using namespace std;
     };
 
     bool Tablero::MovPosible(int movs[][10]){
-     return this->PosValida(movs) >= 1;
+     return (this->PosValida(movs) >= 1);
     }
