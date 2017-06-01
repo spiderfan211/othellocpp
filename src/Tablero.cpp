@@ -262,7 +262,7 @@ using namespace std;
   		return mov_posible;
   	}
 
-    bool Tablero::Coloca(int fila, int columna, int& v)
+    bool Tablero::Coloca(int fila, int columna, int** &v)
   	{
       if(this->MovPosible(v)){
         tablero.SetElemento(fila, columna, turno);
