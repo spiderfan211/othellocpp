@@ -205,7 +205,7 @@ using namespace std;
   	            if(this->GetElemento(x,y) == ' ')
   	             salir = false;
   	            if(this->GetElemento(x,y) == turno){
-  	             movs[x][y] = 1;
+  	             movs[i][j] = 1;
                  num_movs++;
   	             salir = false;
                 }
