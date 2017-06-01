@@ -154,7 +154,7 @@ using namespace std;
                    x += f_inc;
                    y += c_inc;
 
-                   if(x < 0 || x >= SIZE || y < 0 || y >= SIZE)
+                   if(x < 0 || x >= this->GetFils() || y < 0 || y >= this->GetCols())
                      salir = true;
                    if(this->GetElemento(x, y) == ' ')
                      salir = true;
