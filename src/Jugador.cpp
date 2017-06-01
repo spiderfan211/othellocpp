@@ -50,6 +50,7 @@ using namespace std;
      int num = 0;
      int v [t.GetFils()][t.GetColumnas()]
      int e[t.GetFils()] = {0};
+     int n = t.PosValida(v);
 
      for(int i = 0; i < t.GetFils(); i++){
        if (v[i][c] == 1){
