@@ -1,6 +1,7 @@
+#include "Jugador.h"
 #include <iostream>
 #include <string>
-#include "Jugador.h"
+
 using namespace std;
 
 int main(){
@@ -23,7 +24,7 @@ int main(){
 	int fila, columna, turno_actual, ganador,
 		util_jugador1, util_jugador2,
 		jugadas, ganadas_jugador1, ganadas_jugador2,
-		puntuacion_jugador1, puntuacion_jugador2;
+		puntuacion_jugador1, puntuacion_jugador2,
 		mov_invalido;
 	bool jugar, error;
 
