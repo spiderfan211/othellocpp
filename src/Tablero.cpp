@@ -4,7 +4,7 @@ using namespace std;
 
 
     Tablero::Tablero(): tablero(){
-      turno = 1;  
+      turno = 1;
       finalizado = false;
       ganador = 0;
       tablero.SetElemento(tablero.GetFilas()/2,tablero.GetColumnas()/2, 1);
@@ -101,7 +101,7 @@ using namespace std;
     }
 
 
-    void Tablero::Vacia(){ 
+    void Tablero::Vacia(){
       if(finalizado == true){
         for( int i = 0; i < tablero.GetFilas(); i++){
           for( int j = 0; j< tablero.GetColumnas(); j++){
@@ -127,10 +127,10 @@ using namespace std;
 
     void Tablero::Coloca(int f, int c)
     {
-       int f_inc = 0;                   
-       int c_inc = 0;                   
-       int x = 0;                         
-       int y = 0;                          
+       int f_inc = 0;
+       int c_inc = 0;
+       int x = 0;
+       int y = 0;
 
 
        tablero.SetElemento(f, c, turno);
@@ -144,15 +144,15 @@ using namespace std;
            {
 
                if(this->GetElemento(f + f_inc, c + c_inc) == this->TurnoContrario(){
-                 x = f + f_inc;        
-                 y = c + c_inc;        
+                 x = f + f_inc;
+                 y = c + c_inc;
 
 
                 bool salir;
                  do{
                    salir = false;
-                   x += f_inc;      
-                   y += c_inc;           
+                   x += f_inc;
+                   y += c_inc;
 
                    if(x < 0 || x >= SIZE || y < 0 || y >= SIZE)
                      salir = true;
@@ -161,7 +161,7 @@ using namespace std;
                    if(this->GetElemento(x, y) == turno){
                      salir = true
                      while(this->GetElemento(x-=f_inc, y-=c_inc) == this->TurnoContrario())
-                       tablero.SetElemento(x, y, turno); 
+                       tablero.SetElemento(x, y, turno);
                    }
                  } while (!salir)
                 }
@@ -169,7 +169,7 @@ using namespace std;
          }
     }
 
-    int Tablero::PosValida(int movs[][10])  
+    int Tablero::PosValida(int movs[][10])
     {
       int x, y,
       num_movs = 0;
@@ -182,10 +182,15 @@ using namespace std;
       for(int i = 0; i < this->GetFils(); i++){
        for(int j = 0; j < this->GetCols(); j++){
         if(this->GetElemento(i,j) == ' '){
-         for(int k = -1; i + k >= 0 || i + k < this->GetFils(); k++){
-          for(int l = -1; j + l >= 0
-              || j + l < this.GetCols()
-              || (k != 0 && l != 0); l++){
+         for(int k = -1; (k <= 1)
+              || (i + k >= 0)
+              || (i + k < this->GetFils());
+              k++){
+          for(int l = -1; (l >= 1)
+              || (j + l >= 0)
+              || (j + l < this.GetCols())
+              || (k != 0 && l != 0);
+              l++){
            if(this->GetElemento(i + k, j + l) == this->TurnoContrario()){
  	            x = i + k;
 	            y = j + l;
@@ -195,7 +200,7 @@ using namespace std;
 	              x += k;
 	              y += l;
 
-                    if(x < 0 || x > this->GetFils() || y < 0 || y > this->GetColas())
+                if( (x < 0) || (x > this->GetFils()) || (y < 0) || (y > this->GetColas()))
   	             valido = false;
   	            if(this->GetElemento(x,y) == ' ')
   	             valido = false;
