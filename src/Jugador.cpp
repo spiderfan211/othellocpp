@@ -50,16 +50,18 @@ using namespace std;
      int num = 0;
      int v [t.GetFils()][t.GetColumnas()]
      int e[t.GetFils()] = {0};
-     if(t.PosValida(v) == 1){
-       return e[0];
-     }
-     else{
-       for(int i = 0; i < t.GetFils(); i++){
-         if (v[i][c] == 1){
-           num++;
-           e[i] = 1;
-         }
+
+     for(int i = 0; i < t.GetFils(); i++){
+       if (v[i][c] == 1){
+         num++;
+         e[i] = 1;
        }
+     }
+
+     if(num == 1)
+      return i;
+
+     else
        return this->DialogoEscoger(n, e, t);
      }
    };
