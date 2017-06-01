@@ -143,7 +143,7 @@ using namespace std;
              || (f_inc ==0 && c_inc == 0))
            {
 
-               if(this->GetElemento(f + f_inc, c + c_inc) == this->TurnoContrario(){
+               if(this->GetElem(f + f_inc, c + c_inc) == this->TurnoContrario(){
                  x = f + f_inc;
                  y = c + c_inc;
 
@@ -156,11 +156,11 @@ using namespace std;
 
                    if(x < 0 || x >= this->GetFils() || y < 0 || y >= this->GetCols())
                      salir = true;
-                   if(this->GetElemento(x, y) == ' ')
+                   if(this->GetElem(x, y) == ' ')
                      salir = true;
-                   if(this->GetElemento(x, y) == turno){
+                   if(this->GetElem(x, y) == turno){
                      salir = true
-                     while(this->GetElemento(x-=f_inc, y-=c_inc) == this->TurnoContrario())
+                     while(this->GetElem(x-=f_inc, y-=c_inc) == this->TurnoContrario())
                        tablero.SetElemento(x, y, turno);
                    }
                  } while (!salir)
@@ -191,7 +191,7 @@ using namespace std;
               || (j + l < this->GetCols())
               || (k != 0 && l != 0);
               l++){
-           if(this->GetElemento(i + k, j + l) == this->TurnoContrario()){
+           if(this->GetElem(i + k, j + l) == this->TurnoContrario()){
  	            x = i + k;
 	            y = j + l;
 
@@ -202,9 +202,9 @@ using namespace std;
 
                 if( (x < 0) || (x > this->GetFils()) || (y < 0) || (y > this->GetCols()))
   	             salir = false;
-  	            if(this->GetElemento(x,y) == ' ')
+  	            if(this->GetElem(x,y) == ' ')
   	             salir = false;
-  	            if(this->GetElemento(x,y) == turno){
+  	            if(this->GetElem(x,y) == turno){
   	             movs[i][j] = 1;
                  num_movs++;
   	             salir = false;
