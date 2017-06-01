@@ -2,7 +2,7 @@
 #include"Jugador.h"
 using namespace std;
 
-    int Jugador::DialogoEscoger(int n, int* p, Tablero& t){
+    int Jugador::DialogoEscoger(int n, int p[], Tablero& t){
       int k;
       bool okay;
       cout<<"Hay más de una posición válida, elija una:"<<endl;
@@ -47,18 +47,19 @@ using namespace std;
     }
 
     int Jugador::EscogePosicion(int c, Tablero& t){
-     int n=0;
-     int e[t.GetFils()];
-     for(int i = 0; i < t.GetFils(); i++){
-       if (t.PuedePoner(i, c)){
-         e[i] = i;
-         n++;
-       }
-     }
-     if(n == 1){
+     int num = 0;
+     int v [t.GetFils()][t.GetColumnas()]
+     int e[t.GetFils()] = {0};
+     if(t.PosValida(v) == 1){
        return e[0];
      }
      else{
+       for(int i = 0; i < t.GetFils(); i++){
+         if (v[i][c] == 1){
+           num++;
+           e[i] = 1;
+         }
+       }
        return this->DialogoEscoger(n, e, t);
      }
    };
