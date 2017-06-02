@@ -21,11 +21,7 @@ int main(){
 	const int MAX_NOMBRE = 50;
 	char jugador1[MAX_NOMBRE], jugador2[MAX_NOMBRE];
 	char letra, respuesta;
-	int fila, columna, turno_actual, ganador,
-		util_jugador1, util_jugador2,
-		jugadas, ganadas_jugador1, ganadas_jugador2,
-		puntuacion_jugador1, puntuacion_jugador2,
-		mov_invalido;
+	int fila, columna, turno_actual, ganador, jugadas = 1, mov_invalido = 0;
 	bool jugar, error;
 
 
@@ -50,9 +46,12 @@ int main(){
 
 
 
-	util_jugador1 = util_jugador2 = 0;
-	puntuacion_jugador1 = puntuacion_jugador2 = 0;
-	ganadas_jugador1 = ganadas_jugador2 = 0;
+	int util_jugador1 = 0;
+	int util_jugador2 = 0;
+	int puntuacion_jugador1 = 0;
+	int puntuacion_jugador2 = 0;
+	int ganadas_jugador1 = 0;
+	int ganadas_jugador2 = 0;
 
 	cout << msg_j1;
 	letra = cin.get();
@@ -81,11 +80,11 @@ int main(){
 
 	Jugador jugador_2(jugador2, 2);
 
-	tablero.ImprimeTablero();
-
-
 	do{
+		mov_invalido = 0;		//para evitar el bucle infinito
 		do{
+				if(!tablero.IsFinalizada())	//I THINK SO
+					tablero.ImprimeTablero();
 				int c = 0;
 				int f = 0;
 				turno_actual = tablero.GetTurno();
@@ -117,12 +116,14 @@ int main(){
 				 if(mov_invalido == 2)
 				  tablero.AcabarPartida();
 	      }
-			}while(tablero.IsFinalizada() != false);
+				tablero.CambioTurno();
+			}while(tablero.IsFinalizada() == false);
 
 		if(tablero.IsFinalizada() == true){
 				cout <<msg_sin_mov << endl;
 				cout << msg_punt << endl;
 				jugador_1.ImprimeNombre();
+				tablero.PuntuacionTotal();
 				cout << ": " << jugador_1.GetPuntuacion(tablero) << " puntos." << endl;
 				puntuacion_jugador1 += jugador_1.GetPuntuacion(tablero);
 

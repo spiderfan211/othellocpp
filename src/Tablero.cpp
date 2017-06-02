@@ -7,6 +7,7 @@ using namespace std;
       turno = 1;
       finalizado = false;
       ganador = 0;
+      puntuacion1 = puntuacion2 = 0;
       tablero.SetElemento(tablero.GetFilas()/2 ,tablero.GetColumnas()/2, 1);
       tablero.SetElemento(tablero.GetFilas()/2-1,tablero.GetColumnas()/2-1, 1);
       tablero.SetElemento(tablero.GetFilas()/2-1,tablero.GetColumnas()/2, 2);
@@ -17,6 +18,7 @@ using namespace std;
       turno = 1;
       finalizado = false;
       ganador = 0;
+      puntuacion1 = puntuacion2 = 0;
       tablero.SetElemento(tablero.GetFilas()/2,tablero.GetColumnas()/2, 1);
       tablero.SetElemento(tablero.GetFilas()/2-1,tablero.GetColumnas()/2-1, 1);
       tablero.SetElemento(tablero.GetFilas()/2-1,tablero.GetColumnas()/2, 2);
@@ -86,8 +88,7 @@ using namespace std;
       return ganador;
     };
 
-    void Tablero::AcabarPartida()
-    {
+    void Tablero::AcabarPartida(){
       finalizado = true;
     };
 
@@ -126,7 +127,7 @@ using namespace std;
         tablero.SetElemento(tablero.GetFilas()/2+1,tablero.GetColumnas()/2+1, 1);
         tablero.SetElemento(tablero.GetFilas()/2+1,tablero.GetColumnas()/2, 2);
         tablero.SetElemento(tablero.GetFilas()/2,tablero.GetColumnas()/2+1, 2);
-        finalizado = true;
+        finalizado = false;
         turno = 1;
       }
     };
@@ -181,7 +182,6 @@ using namespace std;
                 }
               }
          }
-         this->CambioTurno();
     }
 
     int Tablero::PosValida(int** movs)
