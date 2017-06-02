@@ -25,7 +25,7 @@ $(OBJ)/reversi.o : $(SRC)/reversi.cpp $(INC)/Jugador.h $(INC)/Tablero.h
 	$(CXX) $(CPPFLAGS) -o $@ $(SRC)/reversi.cpp
 
 reversi: $(OBJ)/reversi.o $(OBJ)/Jugador.o $(OBJ)/Clasematriz.o $(OBJ)/Tablero.o
-	$(CXX) -g -o $(BIN)/othello $(OBJ)/reversi.o $(OBJ)/Jugador.o $(OBJ)/Clasematriz.o $(OBJ)/Tablero.o
+	$(CXX) -g -o $(BIN)/reversi $(OBJ)/reversi.o $(OBJ)/Jugador.o $(OBJ)/Clasematriz.o $(OBJ)/Tablero.o
 
 #************Creación de directorios**************************
 

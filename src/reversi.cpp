@@ -81,7 +81,7 @@ int main(){
 
 	Jugador jugador_2(jugador2, 2);
 
-
+	tablero.ImprimeTablero();
 
 
 	do{
@@ -90,7 +90,7 @@ int main(){
 			int f = 0;
 			turno_actual = tablero.GetTurno();
 
-			if(tablero.MovPosible(v) == true){	//
+			if(tablero.MovPosible(v) == true){
 
 			 cout << "Turno de ";
  			 if(turno_actual == 1){
@@ -118,7 +118,7 @@ int main(){
 			 mov_invalido++;
 			 if(mov_invalido == 2)
 			  tablero.AcabarPartida();
-                        }
+      }
 		}while(tablero.IsFinalizada() != false);
 
 		if(tablero.IsFinalizada() == true){

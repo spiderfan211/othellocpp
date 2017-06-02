@@ -3,7 +3,7 @@
 using namespace std;
 
 
-    Tablero::Tablero(): tablero(){
+    Tablero::Tablero():tablero(){
       turno = 1;
       finalizado = false;
       ganador = 0;
@@ -13,7 +13,7 @@ using namespace std;
       tablero.SetElemento(tablero.GetFilas()/2,tablero.GetColumnas()/2+1, 2);
     }
 
-    Tablero::Tablero(int f, int c):tablero(f, c){
+    Tablero::Tablero(int f, int c): tablero(f,c){
       turno = 1;
       finalizado = false;
       ganador = 0;
@@ -24,10 +24,10 @@ using namespace std;
     }
 
     void Tablero::ImprimeTablero(){
-      cout<< "  a b c d e f g h "<<endl<<endl;
+      cout<< "  a b c d e f g h "<<endl;
       cout<< " -----------------"<<endl;
       for (int i = 0; i < this->GetFils(); i++){
-        cout<< i  << "|";
+        cout/*<< i */ << "|";
         for (int j = 0; i < this->GetCols(); j++){
           if(this->GetElem(i,j) == 0 )
             cout << "| ";
