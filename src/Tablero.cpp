@@ -27,8 +27,9 @@ using namespace std;
       char l = 'a';
       cout << " ";
       for(int i = 0; i < this->GetCols() ; i++ ){
-        l += i;
         cout << " " << l;
+        l ++;
+
       }
       cout << endl << " ";
       for(int i = 0; i < this->GetCols() * 2 + 1 ; i++ )
@@ -46,9 +47,13 @@ using namespace std;
             cout << "|o";
           };
           cout << "|" << endl;
-      };
+      }
+      cout << " ";
       for(int i = 0; i < this->GetCols() * 2 + 1 ; i++ )
-        cout<< "-";    };
+        cout<< "-";
+      cout << endl;
+      };
+
 
     int Tablero::GetFils(){
       return tablero.GetFilas();
@@ -176,12 +181,12 @@ using namespace std;
                 }
               }
          }
+         this->CambioTurno();
     }
 
     int Tablero::PosValida(int** movs)
     {
-      int x, y,
-      num_movs = 0;
+      int x, y, num_movs = 0;
       bool salir;
 
       for(int i = 0; i < this->GetFils(); i++)

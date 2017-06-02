@@ -86,40 +86,38 @@ int main(){
 
 	do{
 		do{
-			int c = 0;
-			int f = 0;
-			turno_actual = tablero.GetTurno();
+				int c = 0;
+				int f = 0;
+				turno_actual = tablero.GetTurno();
+				if(tablero.MovPosible(v) == true){
+				 cout << "Turno de ";
+	 			 if(turno_actual == 1){
+					 mov_invalido = 0;
+	 				 jugador_1.ImprimeNombre();
+	 				 cout << endl << msg_columna;
+	 				 cin >> c;
+	 				 f = jugador_1.EscogePosicion(c, tablero, v);
+	 				 tablero.Coloca(f,c); 		//???
 
-			if(tablero.MovPosible(v) == true){
+	 			 }
 
-			 cout << "Turno de ";
- 			 if(turno_actual == 1){
-				 mov_invalido = 0;
- 				 jugador_1.ImprimeNombre();
- 				 cout << endl << msg_columna;
- 				 cin >> c;
- 				 f = jugador_1.EscogePosicion(c, tablero, v);
- 				 tablero.Coloca(f,c); 		//???
+	 			 else{
+					 mov_invalido = 0;
+	 			 	 jugador_2.ImprimeNombre();
+	 				 cout << endl << msg_columna;
+	 				 cin >> c;
+	 				 f = jugador_2.EscogePosicion(c, tablero, v);
+	 				 tablero.Coloca(f,c);			//???
 
- 			 }
+				 }
+				}
 
- 			 else{
-				 mov_invalido = 0;
- 			 	 jugador_2.ImprimeNombre();
- 				 cout << endl << msg_columna;
- 				 cin >> c;
- 				 f = jugador_2.EscogePosicion(c, tablero, v);
- 				 tablero.Coloca(f,c);			//???
-
-			 }
-			}
-
-			else{
-			 mov_invalido++;
-			 if(mov_invalido == 2)
-			  tablero.AcabarPartida();
-      }
-		}while(tablero.IsFinalizada() != false);
+				else{
+				 mov_invalido++;
+				 if(mov_invalido == 2)
+				  tablero.AcabarPartida();
+	      }
+			}while(tablero.IsFinalizada() != false);
 
 		if(tablero.IsFinalizada() == true){
 				cout <<msg_sin_mov << endl;
