@@ -7,10 +7,10 @@ using namespace std;
       turno = 1;
       finalizado = false;
       ganador = 0;
-      tablero.SetElemento(tablero.GetFilas()/2,tablero.GetColumnas()/2, 1);
-      tablero.SetElemento(tablero.GetFilas()/2+1,tablero.GetColumnas()/2+1, 1);
-      tablero.SetElemento(tablero.GetFilas()/2+1,tablero.GetColumnas()/2, 2);
-      tablero.SetElemento(tablero.GetFilas()/2,tablero.GetColumnas()/2+1, 2);
+      tablero.SetElemento(tablero.GetFilas()/2 ,tablero.GetColumnas()/2, 1);
+      tablero.SetElemento(tablero.GetFilas()/2-1,tablero.GetColumnas()/2-1, 1);
+      tablero.SetElemento(tablero.GetFilas()/2-1,tablero.GetColumnas()/2, 2);
+      tablero.SetElemento(tablero.GetFilas()/2,tablero.GetColumnas()/2-1, 2);
     }
 
     Tablero::Tablero(int f, int c): tablero(f,c){
@@ -27,8 +27,8 @@ using namespace std;
       cout<< "  a b c d e f g h "<<endl;
       cout<< " -----------------"<<endl;
       for (int i = 0; i < this->GetFils(); i++){
-        cout/*<< i */ << "|";
-        for (int j = 0; i < this->GetCols(); j++){
+        cout << i  ;
+        for (int j = 0; j < this->GetCols(); j++){
           if(this->GetElem(i,j) == 0 )
             cout << "| ";
           else if (this->GetElem(i,j) == 1)
