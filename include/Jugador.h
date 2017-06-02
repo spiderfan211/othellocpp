@@ -2,6 +2,7 @@
 #define _JUGADORH_
 #include<iostream>
 #include "Tablero.h"
+
 using namespace std;
 
 class Jugador {
@@ -13,7 +14,7 @@ private:
 
 public:
   Jugador(char nom_jugador[], int num_jugador);
-  int EscogePosicion(int c, Tablero& t);
+  int EscogePosicion(int c, Tablero& t, int** v);
 	void ImprimeNombre();
   int GetTurno();
   int GetPuntuacion(Tablero& tablero);

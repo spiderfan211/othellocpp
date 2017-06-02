@@ -18,8 +18,7 @@ using namespace std;
       return k;
     }
 
-    Jugador::Jugador(char nom_jugador[], int num_jugador)
-    {
+    Jugador::Jugador(char nom_jugador[], int num_jugador){
       int util = 0;
 
       for(int i = 0; nom_jugador[i] != '\0' && i < 48; ++i){
@@ -32,8 +31,7 @@ using namespace std;
       turno= num_jugador;
     }
 
-    void Jugador::ImprimeNombre()
-		{
+    void Jugador::ImprimeNombre(){
 			for(int k = 0; nombre[k] != '\0'; ++k)
 				cout << nombre[k];
 		}
@@ -46,9 +44,11 @@ using namespace std;
       return t.GetPuntuacion(turno);
     }
 
-    int Jugador::EscogePosicion(int c, Tablero& t){
+
+
+
+    int Jugador::EscogePosicion(int c, Tablero& t, int **v){
      int num = 0;
-     int v [t.GetFils()][t.GetColumnas()]
      int e[t.GetFils()] = {0};
      int n = t.PosValida(v);
 
@@ -59,10 +59,11 @@ using namespace std;
        }
      }
 
-     if(num == 1)
-      return i;
-
+     if(num == 1){
+      for (int i = 0; (e[i] == 0) && (i < t.GetFils()); i++)
+        if(e[i] == 1)
+          return e[i];
+     }
      else
        return this->DialogoEscoger(n, e, t);
-     }
-   };
+     };

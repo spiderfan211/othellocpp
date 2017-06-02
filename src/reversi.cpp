@@ -39,7 +39,16 @@ int main(){
 	}while( error );
 	Tablero tablero(fila, columna);
 
-	int v[tablero.GetFils()][tablero.GetCols()];
+	int** v;
+
+	v = new int*[fila];     //Testeado memoria dinámica
+	for(int i = 0; i < fila; i++)
+		v[i] = new int[columna];       //CUÁNDO ES EL DELETE?
+
+
+
+
+
 
 	util_jugador1 = util_jugador2 = 0;
 	puntuacion_jugador1 = puntuacion_jugador2 = 0;
@@ -81,7 +90,7 @@ int main(){
 			int f = 0;
 			turno_actual = tablero.GetTurno();
 
-			if(tablero.MovPosible(v) == true){
+			if(tablero.MovPosible(v) == true){	//
 
 			 cout << "Turno de ";
  			 if(turno_actual == 1){
@@ -89,25 +98,25 @@ int main(){
  				 jugador_1.ImprimeNombre();
  				 cout << endl << msg_columna;
  				 cin >> c;
- 				 f = jugador_1.EscogePosicion(c, tablero);
+ 				 f = jugador_1.EscogePosicion(c, tablero, v);
  				 tablero.Coloca(f,c); 		//???
- 
+
  			 }
- 
+
  			 else{
 				 mov_invalido = 0;
  			 	 jugador_2.ImprimeNombre();
  				 cout << endl << msg_columna;
  				 cin >> c;
- 				 f = jugador_2.EscogePosicion(c, tablero);
+ 				 f = jugador_2.EscogePosicion(c, tablero, v);
  				 tablero.Coloca(f,c);			//???
- 
+
 			 }
 			}
 
 			else{
 			 mov_invalido++;
-			 if(mov_invalido = 2)
+			 if(mov_invalido == 2)
 			  tablero.AcabarPartida();
                         }
 		}while(tablero.IsFinalizada() != false);
@@ -169,4 +178,9 @@ int main(){
 				} while(error);
 		}
 	}while(jugar != false);
+
+	for(int i = 0; i < fila; i++){
+			delete[] v[i];
+	}
+	delete[] v;
 }

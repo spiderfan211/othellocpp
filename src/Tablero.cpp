@@ -143,7 +143,7 @@ using namespace std;
              || (f_inc ==0 && c_inc == 0))
            {
 
-               if(this->GetElem(f + f_inc, c + c_inc) == this->TurnoContrario(){
+               if(this->GetElem(f + f_inc, c + c_inc) == this->TurnoContrario()){
                  x = f + f_inc;
                  y = c + c_inc;
 
@@ -159,29 +159,30 @@ using namespace std;
                    if(this->GetElem(x, y) == ' ')
                      salir = true;
                    if(this->GetElem(x, y) == turno){
-                     salir = true
+                     salir = true;
                      while(this->GetElem(x-=f_inc, y-=c_inc) == this->TurnoContrario())
                        tablero.SetElemento(x, y, turno);
                    }
-                 } while (!salir)
+                 } while (!salir);
                 }
               }
          }
     }
 
-    int Tablero::PosValida(int movs[][10])
+    int Tablero::PosValida(int** movs)
     {
       int x, y,
       num_movs = 0;
-      bool valido;
+      bool salir;
 
-      for(int a = 0, a < this->GetFils(); a++)
-       for(int b = 0; b < this->GetCols(); b++)
-        movs[a][b] = 0;
+      for(int i = 0; i < this->GetFils(); i++)
+       for(int j = 0; j < this->GetCols(); j++)
+          movs[i][j] = 0;                         //CUÁNDO ES EL DELETE?
+
 
       for(int i = 0; i < this->GetFils(); i++){
        for(int j = 0; j < this->GetCols(); j++){
-        if(this->GetElemento(i,j) == ' '){
+        if(this->GetElem(i,j) == ' '){
          for(int k = -1; (k <= 1)
               || (i + k >= 0)
               || (i + k < this->GetFils());
@@ -209,16 +210,15 @@ using namespace std;
                  num_movs++;
   	             salir = false;
                 }
-  	            }while(!salir)
-	   }
-	  }
+               }while(!salir);
+	            }
+	           }
          }
         }
        }
       }
      return num_movs;
     };
-
-    bool Tablero::MovPosible(int movs[][10]){
+    bool Tablero::MovPosible(int** movs){
      return (this->PosValida(movs) >= 1);
     }

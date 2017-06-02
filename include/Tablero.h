@@ -22,15 +22,16 @@ private:
     int GetElem(int f, int c);
     bool IsFinalizada();
     int GetTurno();
-    bool CambioTurno();
+    void CambioTurno();
     int GetGanador();
     void AcabarPartida();
     void PuntuacionTotal();
     int GetPuntuacion( int j );
     void Vacia();
+    int TurnoContrario();
     void Coloca(int f, int c);
-    int PosValida(int movs[][10]);
-    bool MovPosible(int movs[][10]){
+    int PosValida(int** movs);
+    bool MovPosible(int** movs);
 
   };
 #endif
