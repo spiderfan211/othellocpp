@@ -18,14 +18,23 @@ using namespace std;
       finalizado = false;
       ganador = 0;
       tablero.SetElemento(tablero.GetFilas()/2,tablero.GetColumnas()/2, 1);
-      tablero.SetElemento(tablero.GetFilas()/2+1,tablero.GetColumnas()/2+1, 1);
-      tablero.SetElemento(tablero.GetFilas()/2+1,tablero.GetColumnas()/2, 2);
-      tablero.SetElemento(tablero.GetFilas()/2,tablero.GetColumnas()/2+1, 2);
+      tablero.SetElemento(tablero.GetFilas()/2-1,tablero.GetColumnas()/2-1, 1);
+      tablero.SetElemento(tablero.GetFilas()/2-1,tablero.GetColumnas()/2, 2);
+      tablero.SetElemento(tablero.GetFilas()/2,tablero.GetColumnas()/2-1, 2);
     }
 
     void Tablero::ImprimeTablero(){
-      cout<< "  a b c d e f g h "<<endl;
-      cout<< " -----------------"<<endl;
+      char l = 'a';
+      cout << " ";
+      for(int i = 0; i < this->GetCols() ; i++ ){
+        l += i;
+        cout << " " << l;
+      }
+      cout << endl << " ";
+      for(int i = 0; i < this->GetCols() * 2 + 1 ; i++ )
+        cout<< "-";
+      cout << endl;
+
       for (int i = 0; i < this->GetFils(); i++){
         cout << i  ;
         for (int j = 0; j < this->GetCols(); j++){
@@ -38,8 +47,8 @@ using namespace std;
           };
           cout << "|" << endl;
       };
-      cout<< " -----------------"<<endl;
-    };
+      for(int i = 0; i < this->GetCols() * 2 + 1 ; i++ )
+        cout<< "-";    };
 
     int Tablero::GetFils(){
       return tablero.GetFilas();
