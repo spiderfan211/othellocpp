@@ -184,58 +184,73 @@ using namespace std;
          }
     }
 
+/* Método que almacena como "1" en una matriz pasada como puntero a punteros las posiciones
+válidas de un tablero y devuelve el número de posiciones que haya sumado*/
+
+/*Da error del tipo "segmentation fault: core generado" al llamar en algún momento al módulo de la clase Clasematriz
+que devuelve el elemento seleccionado por filas y columnas (intenta devolver un elemento de posicion -1157, 63635)
+EL único método llamado aquí que usa dicho método de Clasematriz son this->GetElem()*/
+
     int Tablero::PosValida(int** movs)
     {
-      int x, y, num_movs = 0;
-      bool salir;
-
-      for(int i = 0; i < this->GetFils(); i++)
-       for(int j = 0; j < this->GetCols(); j++)
-          movs[i][j] = 0;                         //CUÁNDO ES EL DELETE?
+    	int x, y, num_movs = 0;  //x e y serán las coordenadas que usaremos para llenar la matriz movs[][]
+    	bool salir;              //num_movs será nuestro return al final del método
 
 
-      for(int i = 0; i < this->GetFils(); i++){
-       for(int j = 0; j < this->GetCols(); j++){
-        if(this->GetElem(i,j) == 0){    // 0 o ' '   ????
-         for(int k = -1; (k <= 1)
-              || (i + k >= 0)
-              || (i + k < this->GetFils());
-              k++){
-          for(int l = -1; (l >= 1)
-              || (j + l >= 0)
-              || (j + l < this->GetCols())
-              || (k != 0 && l != 0);
-              l++){
-           if(this->GetElem(i + k, j + l) == this->TurnoContrario()){
- 	            x = i + k;
-	            y = j + l;
+//inicializamos a 0 la matriz de movimientos válidos
+    	for(int i = 0; i < this->GetFils(); i++)
+    	 for(int j = 0; j < this->GetCols(); j++)
+    			movs[i][j] = 0;
 
-	            do{
-                salir = true;
-	              x += k;
-	              y += l;
+//Recorremos la matriz tablero entera en busca de todas las posiciones válidas
+    	for(int i = 0; i < this->GetFils(); i++){
+    	 for(int j = 0; j < this->GetCols(); j++){
+    		if(this->GetElem(i,j) == 0){        //Comprobamos si el elemento es 0, es decir, que no es de ningún jugador
+    		 for(int k = -1; (k <= 1)           //Con estas comprobaciones, recorremos los alrededores próximos de la posición seleccionada (i,j)
+    					&& (i + k >= 0)               //y aplicamos los filtros que hacen que no nos salgamos del tablero
+    					&& (i + k < this->GetFils()); //Almacenamos las k y l para usarlas para seguir una dirección de búsqueda de fichas enemigas
+    					k++){                         //
+    			for(int l = -1; (l <= 1)          //
+    					&& (j + l >= 0)               //
+    					&& (j + l < this->GetCols()); //
+    					l++){                         //
 
-                if( (x < 0)
-                  || (x > this->GetFils())
-                  || (y < 0)
-                  || (y > this->GetCols()))
-  	             salir = false;
-  	            if(this->GetElem(x,y) == ' ')
-  	             salir = false;
-  	            if(this->GetElem(x,y) == turno){
-  	             movs[i][j] = 1;
-                 num_movs++;
-  	             salir = false;
-                }
-               }while(!salir);
-	            }
-	           }
-         }
-        }
-       }
-      }
+		       if(k != 0 && l != 0){        //la posición misma (i,j) no sirve para seguir buscando en esa dirección
+    						 if(this->GetElem(i + k, j + l) == this->TurnoContrario()){     //Si encontramos una ficha contraria, seguimos esa direccion
+    								x = i + k;                                                  //De manera que la nueva posición sería (x, y)
+    								y = j + l;
+
+    								do{
+    									salir = true;
+    									x += k;
+    									y += l;
+
+    									if( (x > 0) && (x < this->GetFils()) && (y > 0) && (y < this->GetCols())){    //Comprobaciones de límites del tablero
+    										salir = false;
+                        if(t.GetElem( x, y ) == t.TurnoContrario())   //Si encuentra una ficha contraria, sigue buscando
+                          salir = false;
+    										if(this->GetElem(x,y) == 0)     //Si el algoritmo encuentra un elemento neutro antes que uno del mismo turno, la posición no es válida, y sigue los bucles superiores
+    										  salir = true;
+    										if(this->GetElem(x,y) == this->GetTurno()){    //Si encuentra una de su turno, la posición sería válida
+    										  movs[i][j] = 1;         //La almacena en la matriz de memoria dinámica
+    										  num_movs++;             //Habrá una posición válida más
+    										  salir = true;           //Sale del bucle, sigue con los superiores (i, j, k, l)
+    										}
+    									}
+    								 }while(!salir);
+    					   }
+    				 }
+    			}
+    		 }
+    		}
+    	 }
+     	}
      return num_movs;
     };
+
+
+
+
     bool Tablero::MovPosible(int** movs){
      return (this->PosValida(movs) >= 1);
     }

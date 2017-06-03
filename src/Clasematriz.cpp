@@ -42,7 +42,7 @@ using namespace std;
 
 
    int Matriz::GetElemento(int f, int c){
-     return matriz[f][c];
+    return matriz[f][c];
    };
 
 
