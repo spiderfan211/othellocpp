@@ -196,7 +196,7 @@ using namespace std;
 
       for(int i = 0; i < this->GetFils(); i++){
        for(int j = 0; j < this->GetCols(); j++){
-        if(this->GetElem(i,j) == ' '){
+        if(this->GetElem(i,j) == 0){    // 0 o ' '   ????
          for(int k = -1; (k <= 1)
               || (i + k >= 0)
               || (i + k < this->GetFils());
@@ -215,7 +215,10 @@ using namespace std;
 	              x += k;
 	              y += l;
 
-                if( (x < 0) || (x > this->GetFils()) || (y < 0) || (y > this->GetCols()))
+                if( (x < 0)
+                  || (x > this->GetFils())
+                  || (y < 0)
+                  || (y > this->GetCols()))
   	             salir = false;
   	            if(this->GetElem(x,y) == ' ')
   	             salir = false;

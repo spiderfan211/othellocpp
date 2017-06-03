@@ -39,8 +39,7 @@ int main(){
 
 	v = new int*[fila];     //Testeado memoria dinámica
 	for(int i = 0; i < fila; i++)
-		v[i] = new int[columna];       //CUÁNDO ES EL DELETE?
-
+		v[i] = new int[columna];
 
 
 
@@ -79,6 +78,24 @@ int main(){
 	jugador2[util_jugador2] = '\0';
 
 	Jugador jugador_2(jugador2, 2);
+
+
+
+
+	int prueba = tablero.PosValida(v);
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	do{
 		mov_invalido = 0;		//para evitar el bucle infinito
