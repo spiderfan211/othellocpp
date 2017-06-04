@@ -3,7 +3,7 @@ using namespace std;
    Matriz::Matriz(){
      Matriz(10,10);
    };
-   Matriz::Matriz( Matriz &m){   //CAMBIAR CUANDO MEMORIA DINAMICA
+   Matriz::Matriz( Matriz &m){
      filas = m.GetFilas();
      columnas = m.GetColumnas();
      for (int i = 0; i < filas; i++) {
@@ -11,7 +11,7 @@ using namespace std;
         matriz[i][j] = m.GetElemento(i,j);
      }
    };
-   Matriz::Matriz(int fils, int cols){   //CAMBIAR CUANDO MEMORIA DINAMICA
+   Matriz::Matriz(int fils, int cols){
      bool aux = (fils  * cols <=  100) && (fils >=  4) && (cols >= 4);
      if (aux){
        filas=fils;
@@ -23,7 +23,7 @@ using namespace std;
      }
    };
 
-   Matriz::~Matriz(){     //CAMBIAR CUANDO MEMORIA DINAMICA
+   Matriz::~Matriz(){
      for (int i = 0; i < filas; i++) {
        for (int j = 0; j< columnas; j++)
         matriz[i][j] = 0;

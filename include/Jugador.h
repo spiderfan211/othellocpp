@@ -14,7 +14,7 @@ private:
 
 public:
   Jugador(char nom_jugador[], int num_jugador);
-  int EscogePosicion(int c, Tablero& t, int** v);
+  int EscogePosicion(int c, Tablero& t);
 	void ImprimeNombre();
   int GetTurno();
   int GetPuntuacion(Tablero& tablero);

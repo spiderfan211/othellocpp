@@ -16,7 +16,7 @@ int main(){
 	msg_jugar_nueva = "¿Desea jugar de nuevo? (s/n): ",
 	msg_error = "Debes introducir un valor correcto",
 	msg_resultados = "Resultados hasta el momento: ",
-	msg_columna = "Introduzca columna";
+	msg_columna = "Introduzca columna: ";
 
 	const int MAX_NOMBRE = 50;
 	char jugador1[MAX_NOMBRE], jugador2[MAX_NOMBRE];
@@ -34,14 +34,6 @@ int main(){
 			cout << msg_error;
 	}while( error );
 	Tablero tablero(fila, columna);
-
-	int** v;
-
-	v = new int*[fila];     //Testeado memoria dinámica
-	for(int i = 0; i < fila; i++)
-		v[i] = new int[columna];
-
-
 
 
 
@@ -82,38 +74,24 @@ int main(){
 
 
 
-	int prueba = tablero.PosValida(v);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	do{
-		mov_invalido = 0;		//para evitar el bucle infinito
+		mov_invalido = 0;
 		do{
-				if(!tablero.IsFinalizada())	//I THINK SO
+				if(!tablero.IsFinalizada())
 					tablero.ImprimeTablero();
 				int c = 0;
 				int f = 0;
 				turno_actual = tablero.GetTurno();
-				if(tablero.MovPosible(v) == true){
-				 cout << "Turno de ";
+				if(tablero.MovPosible()){
+				 cout << "Turno de: ";
 	 			 if(turno_actual == 1){
 					 mov_invalido = 0;
 	 				 jugador_1.ImprimeNombre();
 	 				 cout << endl << msg_columna;
 	 				 cin >> c;
-	 				 f = jugador_1.EscogePosicion(c, tablero, v);
-	 				 tablero.Coloca(f,c); 		//???
+					 c-=1;
+	 				 f = jugador_1.EscogePosicion(c, tablero);
+	 				 tablero.Coloca(f,c);
 
 	 			 }
 
@@ -122,7 +100,8 @@ int main(){
 	 			 	 jugador_2.ImprimeNombre();
 	 				 cout << endl << msg_columna;
 	 				 cin >> c;
-	 				 f = jugador_2.EscogePosicion(c, tablero, v);
+					 c-=1;
+	 				 f = jugador_2.EscogePosicion(c, tablero);
 	 				 tablero.Coloca(f,c);			//???
 
 				 }
@@ -195,8 +174,4 @@ int main(){
 		}
 	}while(jugar != false);
 
-	for(int i = 0; i < fila; i++){
-			delete[] v[i];
-	}
-	delete[] v;
 }

@@ -2,19 +2,19 @@
 #include"Jugador.h"
 using namespace std;
 
-    int Jugador::DialogoEscoger(int n, int p[], Tablero& t){
+    int Jugador::DialogoEscoger( int n, int* p, Tablero& t){
       int k;
       bool okay;
       cout<<"Hay más de una posición válida, elija una:"<<endl;
       t.ImprimeTablero();
       do{
         cin >> k;
-        for(int i = 0; i <n; i++){
-          okay = k == p[i];
-        }
+        k-=1;
+        okay = (p[k] == 1);
+
         if(!okay)
           cout << "Error, introduzca una fila correcta: ";
-      }while( !okay || k < 0 || k > t.GetFils() );
+      }while( !okay || k < 0 || k > n );
       return k;
     }
 
@@ -47,23 +47,30 @@ using namespace std;
 
 
 
-    int Jugador::EscogePosicion(int c, Tablero& t, int **v){
-     int num = 0;
-     int e[t.GetFils()] = {0};
-     int n = t.PosValida(v);
+    int Jugador::EscogePosicion(int c, Tablero& t){
+     int num = 0, ret = 0;
+     int e[10];
+     int n = t.GetFils();
+     for(int i = 0; i < n; i++)
+      e[i] = 0;
 
-     for(int i = 0; i < t.GetFils(); i++){
-       if (v[i][c] == 1){
+     for(int i = 0; i < n; i++){
+       if (t.PosValida(i,c)){
          num++;
          e[i] = 1;
        }
      }
 
      if(num == 1){
-      for (int i = 0; (e[i] == 0) && (i < t.GetFils()); i++)
+      for (int i = 0; (i < n); i++)
         if(e[i] == 1)
-          return e[i];
+          ret = i;
      }
+     else if(num > 1)
+       ret = this->DialogoEscoger(n, e, t);
      else
-       return this->DialogoEscoger(n, e, t);
+       ret = 0;
+
+
+      return ret;
      };

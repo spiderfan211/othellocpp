@@ -30,8 +30,8 @@ private:
     void Vacia();
     int TurnoContrario();
     void Coloca(int f, int c);
-    int PosValida(int** movs);
-    bool MovPosible(int** movs);
+    bool PosValida(int f, int c);
+    bool MovPosible();
 
   };
 #endif
