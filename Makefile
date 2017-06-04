@@ -37,7 +37,7 @@ $(BIN):
 
 # ******************Limpieza**********************************
 clean :
-	-rm  $(OBJ)/* $(SRC)/*~ $(INC)/*~ ./*~
+	-rm  $(OBJ)/*
 
 mrproper : clean
 	-rm $(BIN)/* doc/html/*
