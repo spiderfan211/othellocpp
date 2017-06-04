@@ -91,8 +91,7 @@ int main(){
 	 				 cin >> c;
 					 c-=1;
 	 				 f = jugador_1.EscogePosicion(c, tablero);
-	 				 tablero.Coloca(f,c);
-
+					 tablero.Coloca(f,c);
 	 			 }
 
 	 			 else{
@@ -102,8 +101,7 @@ int main(){
 	 				 cin >> c;
 					 c-=1;
 	 				 f = jugador_2.EscogePosicion(c, tablero);
-	 				 tablero.Coloca(f,c);			//???
-
+					 tablero.Coloca(f,c);
 				 }
 				}
 
@@ -112,7 +110,7 @@ int main(){
 				 if(mov_invalido == 2)
 				  tablero.AcabarPartida();
 	      }
-				tablero.CambioTurno();
+					tablero.CambioTurno();
 			}while(tablero.IsFinalizada() == false);
 
 		if(tablero.IsFinalizada() == true){

@@ -39,7 +39,7 @@ using namespace std;
       cout << endl;
 
       for (int i = 0; i < this->GetFils(); i++){
-        cout << i  ;
+        cout << i+1  ;
         for (int j = 0; j < this->GetCols(); j++){
           if(this->GetElem(i,j) == 0 )
             cout << "| ";
@@ -140,8 +140,7 @@ using namespace std;
         return t = 1;
     }
 
-    void Tablero::Coloca(int f, int c)
-    {
+    void Tablero::Coloca(int f, int c){
        int f_inc = 0;
        int c_inc = 0;
        int x = 0;
@@ -187,7 +186,7 @@ using namespace std;
                 }
               }
          }
-    }
+      }
 
 /* Método que almacena como "1" en una matriz pasada como puntero a punteros las posiciones
 válidas de un tablero y devuelve el número de posiciones que haya sumado*/
